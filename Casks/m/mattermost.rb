@@ -1,22 +1,22 @@
 cask "mattermost" do
   arch arm: "m1", intel: "x64"
 
-  version "5.6.0"
-  sha256 arm:   "f1cdbe5bb848b774075fcfe4ce1d7a1bb92ea0e9f1d7de4b48fe7144fa8a4a3e",
-         intel: "fdcbe98d1c8a9b81cc6ee3aaab8ee91e8b7542d6caa903dd0055cfdec462b381"
+  version "5.10.2"
+  sha256 arm:   "e8a1d76e88bb64b313fc8fed47676187691710dc74f240a3db17bbf8faf4eb0d",
+         intel: "47371fa62ef12424d01631e6affac61eeec49aba3ea36ec84711ece0a955b5ab"
 
   url "https://releases.mattermost.com/desktop/#{version}/mattermost-desktop-#{version}-mac-#{arch}.zip"
   name "Mattermost"
   desc "Open-source, self-hosted Slack-alternative"
   homepage "https://mattermost.com/"
 
-  # Upstream publishes file links in the description of GitHub releases.
   livecheck do
-    url "https://github.com/mattermost/desktop"
-    strategy :github_latest
+    url "https://releases.mattermost.com/desktop/latest-mac.yml"
+    strategy :electron_builder
   end
 
-  depends_on macos: ">= :catalina"
+  auto_updates true
+  depends_on macos: ">= :big_sur"
 
   app "Mattermost.app"
 

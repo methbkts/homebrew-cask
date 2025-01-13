@@ -1,8 +1,8 @@
 cask "emacs" do
-  arch arm: "arm64-11", intel: "x86_64-10_11"
+  arch arm: "arm64-11", intel: "x86_64-10_12"
 
-  version "29.2"
-  sha256 "66774247bfb6f66280117bfe75b9f2134bf3279c325fa94cbe07eaed8653ee2d"
+  version "29.4-1"
+  sha256 "6fa18f0f516bc75264fa8971e7521ebf8130619a66acaf278eaf3d2473c9c2b0"
 
   url "https://emacsformacosx.com/emacs-builds/Emacs-#{version}-universal.dmg"
   name "Emacs"
@@ -15,8 +15,8 @@ cask "emacs" do
   end
 
   conflicts_with cask:    [
-                   "homebrew/cask-versions/emacs-nightly",
-                   "homebrew/cask-versions/emacs-pretest",
+                   "emacs@nightly",
+                   "emacs@pretest",
                  ],
                  formula: "emacs"
 

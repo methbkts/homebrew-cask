@@ -1,35 +1,39 @@
 cask "rustrover" do
   arch arm: "-aarch64"
 
-  version "2023.3,233.14015.155"
-  sha256 arm:   "13c986d075c78e6a81db489247fc542014ad46da7cc7bd6fa1710be047ef0884",
-         intel: "ceb2f78f0d018b66a2f81ad0e2facc7717e4d2f0fe0a3d3ef9277269afb64dee"
+  version "2024.3.2,243.22562.230"
+  sha256 arm:   "2d715c9a4137815a45abcd208121ef5d66f2b89d3f041d5e905e45c487834985",
+         intel: "85ba87fc294d957c3e8efe51633589fd252bc9e6608eb2dbe4b8e5492ef75788"
 
-  url "https://download.jetbrains.com/rustrover/RustRover-#{version.csv.second}#{arch}.dmg"
+  url "https://download.jetbrains.com/rustrover/RustRover-#{version.csv.first}#{arch}.dmg"
   name "RustRover"
   desc "Rust IDE"
   homepage "https://www.jetbrains.com/rust/"
 
   livecheck do
-    url "https://data.services.jetbrains.com/products/releases?code=RR&latest=true&type=eap"
+    url "https://data.services.jetbrains.com/products/releases?code=RR&latest=true&type=release"
     strategy :json do |json|
-      json["RR"].map do |release|
-        "#{release["version"]},#{release["build"]}"
+      json["RR"]&.map do |release|
+        version = release["version"]
+        build = release["build"]
+        next if version.blank? || build.blank?
+
+        "#{version},#{build}"
       end
     end
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :high_sierra"
 
-  app "RustRover #{version.before_comma} EAP.app", target: "RustRover.app"
+  app "RustRover.app"
   binary "#{appdir}/RustRover.app/Contents/MacOS/rustrover"
 
   zap trash: [
     "~/Library/Application Support/JetBrains/RustRover#{version.major_minor}",
     "~/Library/Caches/JetBrains/RustRover#{version.major_minor}",
     "~/Library/Logs/JetBrains/RustRover#{version.major_minor}",
-    "~/Library/Preferences/com.jetbrains.rustrover-EAP.plist",
-    "~/Library/Saved Application State/com.jetbrains.rustrover-EAP.SavedState",
+    "~/Library/Preferences/com.jetbrains.rustrover.plist",
+    "~/Library/Saved Application State/com.jetbrains.rustrover.savedState",
   ]
 end

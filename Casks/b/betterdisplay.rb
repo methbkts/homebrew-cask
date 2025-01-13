@@ -6,12 +6,18 @@ cask "betterdisplay" do
     livecheck do
       skip "Legacy version"
     end
-
-    depends_on macos: ">= :monterey"
   end
-  on_monterey :or_newer do
-    version "2.2.6"
-    sha256 "6a7e6faa7cb55dc53bd34edc88a8779e800e5fbc1bfd725b372c2b24a40375ca"
+  on_monterey do
+    version "2.3.9"
+    sha256 "3ee043fd5893ab354efbc4c9a92295a21b365e55af34cc64612255878b746722"
+
+    livecheck do
+      skip "Legacy version"
+    end
+  end
+  on_ventura :or_newer do
+    version "3.3.0"
+    sha256 "034921dd735d979909df62b1c1bd0f020c5f18947e11912868ffa0b2944911c5"
 
     livecheck do
       url :url
@@ -26,6 +32,7 @@ cask "betterdisplay" do
   homepage "https://betterdisplay.pro/"
 
   auto_updates true
+  depends_on macos: ">= :mojave"
 
   app "BetterDisplay.app"
 

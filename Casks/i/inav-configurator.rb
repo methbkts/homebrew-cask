@@ -1,6 +1,6 @@
 cask "inav-configurator" do
-  version "7.0.1"
-  sha256 "146ecf0ec53574caf9e97120fd04efd47496ec3b3e7f4e3e0656e267ae4adf70"
+  version "7.1.2"
+  sha256 "afc1b988549f48e81839e900b3a46380a213b5e943fe0c27dfd2659047553891"
 
   url "https://github.com/iNavFlight/inav-configurator/releases/download/#{version}/INAV-Configurator_macOS_#{version}.zip"
   name "INAV Configurator"
@@ -20,4 +20,8 @@ cask "inav-configurator" do
     "~/Library/Preferences/com.nw-builder.inav-configurator.plist",
     "~/Library/Saved Application State/com.nw-builder.inav-configurator.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

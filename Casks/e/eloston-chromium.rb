@@ -1,32 +1,60 @@
 cask "eloston-chromium" do
   arch arm: "arm64", intel: "x86-64"
 
-  version "122.0.6261.111-1.1"
-  sha256 arm:   "d82330e2527f15d035442a869b4df12c92ada6999bf2e41700e4d82676c21c76",
-         intel: "cb2c125ee9cd05bbd8fadc4b865a894517b5d86e687c6eb3dd3ee5665e4b8965"
+  sha256 arm:   "1b2815ba51961767e30a46d210045f222bc536b2e4678925fe919ffc4391c628",
+         intel: "08a6d509a51c6056a5775e9ed9d4ba2233378d8fa532bcc917a6371dae017e5c"
+
+  on_arm do
+    version "131.0.6778.204-1.1"
+
+    livecheck do
+      url :url
+      regex(/^v?(\d+(?:[.-]\d+)+)(?:[._-]#{arch})?(?:[._-]+?(\d+(?:\.\d+)*))?$/i)
+      strategy :github_latest do |json, regex|
+        match = json["tag_name"]&.match(regex)
+        next if match.blank?
+
+        match[1]
+      end
+    end
+  end
+  on_intel do
+    version "130.0.6723.116-1.1"
+
+    # Upstream isn't able to provide Intel builds for the time being, so we
+    # have to use the `GithubReleases` strategy to check recent releases and
+    # identify the latest version with an Intel release asset.
+    # TODO: Switch back to one `GithubLatest` `livecheck` block when upstream
+    # reliably publishes Intel builds again.
+    livecheck do
+      url :url
+      regex(/ungoogled[._-]chromium[._-]v?(\d+(?:[.-]\d+)+)[._-]#{arch}[._-]macos\.dmg/i)
+      strategy :github_releases do |json, regex|
+        json.map do |release|
+          next if release["draft"] || release["prerelease"]
+
+          release["assets"]&.map do |asset|
+            match = asset["name"]&.match(regex)
+            next if match.blank?
+
+            match[1]
+          end
+        end.flatten
+      end
+    end
+  end
 
   url "https://github.com/ungoogled-software/ungoogled-chromium-macos/releases/download/#{version}/ungoogled-chromium_#{version}_#{arch}-macos.dmg",
       verified: "github.com/ungoogled-software/ungoogled-chromium-macos/"
   name "Ungoogled Chromium"
   desc "Google Chromium, sans integration with Google"
-  homepage "https://ungoogled-software.github.io/ungoogled-chromium-binaries/"
-
-  livecheck do
-    url :url
-    regex(/^v?(\d+(?:[.-]\d+)+)(?:[._-]#{arch})?(?:[._-]+?(\d+(?:\.\d+)*))?$/i)
-    strategy :github_latest do |json, regex|
-      match = json["tag_name"]&.match(regex)
-      next if match.blank?
-
-      match[1]
-    end
-  end
+  homepage "https://ungoogled-software.github.io/"
 
   conflicts_with cask: [
     "chromium",
     "freesmug-chromium",
   ]
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :big_sur"
 
   app "Chromium.app"
 

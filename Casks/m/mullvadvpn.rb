@@ -1,9 +1,8 @@
 cask "mullvadvpn" do
-  version "2023.6"
-  sha256 "5187ce19f9aa904685b29a7845f16b82a5664ac6877a926d5649518285f6afcf"
+  version "2025.2"
+  sha256 "f5fdbe009489ef6c3f2d5182ca5b460dae555fbcbe3c132a9b7ff9316e41be0f"
 
-  url "https://github.com/mullvad/mullvadvpn-app/releases/download/#{version}/MullvadVPN-#{version}.pkg",
-      verified: "github.com/mullvad/mullvadvpn-app/"
+  url "https://cdn.mullvad.net/app/desktop/releases/#{version}/MullvadVPN-#{version}.pkg"
   name "Mullvad VPN"
   desc "VPN client"
   homepage "https://mullvad.net/"
@@ -13,8 +12,8 @@ cask "mullvadvpn" do
     strategy :header_match
   end
 
-  conflicts_with cask: "homebrew/cask-versions/mullvadvpn-beta"
-  depends_on macos: ">= :big_sur"
+  conflicts_with cask: "mullvadvpn@beta"
+  depends_on macos: ">= :ventura"
 
   pkg "MullvadVPN-#{version}.pkg"
 
@@ -23,6 +22,9 @@ cask "mullvadvpn" do
             delete:    [
               "/Library/Caches/mullvad-vpn",
               "/Library/LaunchDaemons/net.mullvad.daemon.plist",
+              "/opt/homebrew/share/fish/vendor_completions.d/mullvad.fish",
+              "/usr/local/share/fish/vendor_completions.d/mullvad.fish",
+              "/usr/local/share/zsh/site-functions/_mullvad",
               "/var/log/mullvad-vpn",
             ]
 

@@ -1,6 +1,6 @@
 cask "microsoft-office" do
-  version "16.82.24021116"
-  sha256 "5cc0271a8086506a02d65dc441a92af4ced9ed67bcf3f0c03ec11019df45bb0c"
+  version "16.92.24120731"
+  sha256 "f0943b0a76bb5962b89bec20c681fb76ef624b3389390bb45c53e89a75dab9b9"
 
   url "https://officecdnmac.microsoft.com/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_365_and_Office_#{version}_Installer.pkg"
   name "Microsoft Office"
@@ -24,7 +24,7 @@ cask "microsoft-office" do
     onedrive
   ]
   depends_on cask: "microsoft-auto-update"
-  depends_on macos: ">= :monterey"
+  depends_on macos: ">= :ventura"
 
   pkg "Microsoft_365_and_Office_#{version}_Installer.pkg",
       choices: [
@@ -56,8 +56,12 @@ cask "microsoft-office" do
               "com.microsoft.package.Microsoft_Word.app",
               "com.microsoft.package.Proofing_Tools",
               "com.microsoft.pkg.licensing",
+              "com.microsoft.wdav",
+              "com.microsoft.wdav.shim",
             ],
             delete:    [
+              "/Applications/Microsoft Defender Shim.app",
+              "/Applications/Microsoft Defender.app",
               "/Applications/Microsoft Excel.app",
               "/Applications/Microsoft OneNote.app",
               "/Applications/Microsoft Outlook.app",

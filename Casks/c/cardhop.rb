@@ -1,6 +1,6 @@
 cask "cardhop" do
-  version "2.2.16"
-  sha256 "e34eb952495c4fb26b877a66d2960ef2641db98514a0c6697be6aab5164dbe64"
+  version "2.3.3"
+  sha256 "5206bea6999bfeaa77f3c6ac0c3a10c9c831f8255a851f286c558ed63cbe85ad"
 
   url "https://cdn.flexibits.com/Cardhop_#{version}.zip"
   name "Cardhop"
@@ -13,7 +13,7 @@ cask "cardhop" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: ">= :monterey"
 
   app "Cardhop.app"
 

@@ -1,9 +1,9 @@
 cask "tastytrade" do
   arch arm: "-aarch64"
 
-  version "2.9.0"
-  sha256 arm:   "3b0dcaac8da21804cf1db10a7cff0c097d377682f631aa1bf4645bd5ef402306",
-         intel: "cb2962dcfce96601a3b915556d6d5322268239d4110606749e8b2b55a19828f2"
+  version "2.20.0"
+  sha256 arm:   "659b0775cfced2ab5303e49fe8c4fd4720cca7cb069c754744239b6ad87ac01f",
+         intel: "a588efe67b35bd8ea4dbcc5e96def0e3709bbfff0ef53bd257ea030b79b2e173"
 
   url "https://download.tastytrade.com/desktop-#{version.major}.x.x/#{version}/tastytrade-#{version}#{arch}.dmg"
   name "tastytrade"
@@ -26,9 +26,9 @@ cask "tastytrade" do
         break if requests > 4
 
         content = Homebrew::Livecheck::Strategy.page_content("https://tastytrade.com/page-data/sq/d/#{static_hash}.json")
-        next if content.blank? || content[:content].blank?
+        next if content[:content].blank?
 
-        hash_json = JSON.parse(content[:content])
+        hash_json = Homebrew::Livecheck::Strategy::Json.parse_json(content[:content])
         version = hash_json.dig("data", "contentstackGlobalSettings", "tastyworksSoftware", "desktopVersion")
         break version if version.present?
       end

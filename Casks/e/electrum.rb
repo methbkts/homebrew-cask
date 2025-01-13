@@ -1,6 +1,6 @@
 cask "electrum" do
-  version "4.5.3"
-  sha256 "6c0e5a86d4f66a45c48022749ae812d7181950ecff2acbea831836c823bfc947"
+  version "4.5.8"
+  sha256 "7ac3d44dca727dc028d8819ef28350b705600fa706a189db956d2e3725a65e0d"
 
   url "https://download.electrum.org/#{version}/electrum-#{version}.dmg"
   name "Electrum"
@@ -8,7 +8,7 @@ cask "electrum" do
   homepage "https://electrum.org/"
 
   livecheck do
-    url "https://electrum.org/#download"
+    url :homepage
     regex(/href=.*?electrum[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
@@ -22,4 +22,8 @@ cask "electrum" do
     "~/Library/Preferences/org.org.pythonmac.unspecified.Electrum.plist",
     "~/Library/Saved Application State/Electrum.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

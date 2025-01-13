@@ -1,6 +1,6 @@
 cask "couchbase-server-community" do
-  version "7.2.4"
-  sha256 "686aa84ce001f876a93f1bb1de711bd04f45b2df89a7870a19fb6ed830372e7a"
+  version "7.6.2"
+  sha256 "c9f1a8c69006566d778aa301e823e978650edc7d40795d3793def5283cefb0dc"
 
   url "https://packages.couchbase.com/releases/#{version}/couchbase-server-community_#{version}-macos_x86_64.dmg"
   name "Couchbase Server"
@@ -13,7 +13,7 @@ cask "couchbase-server-community" do
   end
 
   conflicts_with cask: "couchbase-server-enterprise"
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :monterey"
 
   app "Couchbase Server.app"
 
@@ -25,4 +25,8 @@ cask "couchbase-server-community" do
     "~/Library/Preferences/com.couchbase.couchbase-server.plist",
     "~/Library/Preferences/couchbase-server.ini",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

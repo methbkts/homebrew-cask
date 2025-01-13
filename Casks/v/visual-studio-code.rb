@@ -1,9 +1,9 @@
 cask "visual-studio-code" do
   arch arm: "darwin-arm64", intel: "darwin"
 
-  version "1.87.1"
-  sha256 arm:   "920fe482947ddf848fc3c216c2b45114d873ce5231d24da00f180b913ea912f2",
-         intel: "28e3432a7d78f43c547a40ffe4cfe598604381f50bc423b8eb7a14f66381ce06"
+  version "1.96.3"
+  sha256 arm:   "3c91eaf68be263e2af41ac2383341e30b65a06b29c973dd78e92c178a0e40104",
+         intel: "3eaecc993367964e854424f5a2006ce1b442fb8b2cba8f0a298c409a660a8e41"
 
   url "https://update.code.visualstudio.com/#{version}/#{arch}/stable"
   name "Microsoft Visual Studio Code"
@@ -33,6 +33,7 @@ cask "visual-studio-code" do
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.microsoft.vscode.sfl*",
     "~/Library/Caches/com.microsoft.VSCode",
     "~/Library/Caches/com.microsoft.VSCode.ShipIt",
+    "~/Library/HTTPStorages/com.microsoft.VSCode",
     "~/Library/Preferences/ByHost/com.microsoft.VSCode.ShipIt.*.plist",
     "~/Library/Preferences/com.microsoft.VSCode.helper.plist",
     "~/Library/Preferences/com.microsoft.VSCode.plist",

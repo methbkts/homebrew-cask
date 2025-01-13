@@ -1,9 +1,9 @@
 cask "sapmachine-jdk" do
   arch arm: "aarch64", intel: "x64"
 
-  version "21.0.2"
-  sha256 arm:   "5382dbb1f80b2c5bdac2713cf6e3a9aec2b7315b62870f110ac7dae628c8f08e",
-         intel: "06f1e707b913e6ca3f3ac7714bda28ebebb0d2cc8f9a3a7cb89f17281da4c2f0"
+  version "23.0.1"
+  sha256 arm:   "2901ff85a1bf7a317a785acbd246a77d4cef1d0fb9c6914119319cf251d200bb",
+         intel: "00c523153e3e9c115c6f2205b771a8d7da17132d92a3cf29b414cf5f16844077"
 
   url "https://github.com/SAP/SapMachine/releases/download/sapmachine-#{version}/sapmachine-jdk-#{version}_macos-#{arch}_bin.dmg",
       verified: "github.com/SAP/SapMachine/"
@@ -15,7 +15,19 @@ cask "sapmachine-jdk" do
   # following JSON file, so we have to check it instead.
   livecheck do
     url "https://sap.github.io/SapMachine/assets/data/sapmachine-releases-latest.json"
-    regex(/["']tag["']:\s*["']sapmachine[._-]v?(\d+(?:\.\d+)*)["']/i)
+    regex(/^sapmachine[._-]v?(\d+(?:\.\d+)*)$/i)
+    strategy :json do |json, regex|
+      json.map do |_, item|
+        next if item["ea"]
+
+        item["releases"]&.map do |release|
+          match = release["tag"]&.match(regex)
+          next if match.blank?
+
+          match[1]
+        end
+      end.flatten
+    end
   end
 
   artifact "sapmachine-jdk-#{version}.jdk", target: "/Library/Java/JavaVirtualMachines/sapmachine-jdk.jdk"

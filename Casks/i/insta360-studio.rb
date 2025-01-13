@@ -1,25 +1,25 @@
 cask "insta360-studio" do
-  version "4.9.2,2024,bc4b56f9064b80abb16e09ca203cad94,RC_build38,20240201_132647_signed_1706765253956"
-  sha256 "3c1cc46980be7e7f220a599357337115d20f8e9aff7ad5a370cd0889a4ea9509"
+  version "5.4.8,8a643f7d253f1e9022a9caeaa4dfff6f,release_insta360,RC_build30,_20241230_125120_signed_1735534363956"
+  sha256 "3057e16a8d5ae239030d621f39bb1ff057de7dac988f20548670a2cfc5c1d10b"
 
-  url "https://file.insta360.com/static/#{version.csv.third}/Insta360Studio#{version.csv.second}_#{version.csv.first}(#{version.csv.fourth})_#{version.csv.fifth}.pkg"
+  url "https://file.insta360.com/static/#{version.csv.second}/Insta360Studio_#{version.csv.first}_#{version.csv.third}(#{version.csv.fourth})#{version.csv.fifth}.pkg"
   name "Insta360 Studio"
   desc "Video and photo editor"
   homepage "https://www.insta360.com/"
 
+  # The filename format can fluctuate between versions, so we have to include
+  # any text that may vary in the cask `version`. However, some filenames
+  # include parentheses and we can't include those characters in the cask
+  # `version`, so we have to chunk the text to work around this limitation.
+  # NOTE: We simply follow what upstream presents as the newest version and
+  # that may be beta, RC, etc.
   livecheck do
     url "https://openapi.insta360.com/app/appDownload/getGroupApp?group=insta360-go2&X-Language=en-us"
-    regex(%r{
-      /(\h+)/
-      Insta360Studio(\d+)
-      (?:[._-]|%20)(?:\d+(?:\.\d+)+)
-      (?:[._-]?\(([^)]+?)\))?
-      [._-](\d+(?:[._-](?:\d+|signed))*)
-      \.pkg
-    }ix)
+    regex(%r{/(\h+)/Insta360(?:%20)?Studio(?:[._-]|%20)v?(?:\d+(?:\.\d+)+)[._-](.+)\.pkg}i)
+
     strategy :json do |json, regex|
       # Find the Insta360 Studio app
-      app = json.dig("data", "apps")&.find { |item| item["id"] == 38 }
+      app = json.dig("data", "apps")&.find { |item| item["app_id"] == 38 }
       next if app.blank?
 
       # Find the newest macOS version
@@ -36,19 +36,18 @@ cask "insta360-studio" do
       match = channel["download_url"]&.match(regex)
       next if version.blank? || match.blank?
 
-      "#{version},#{match[2]},#{match[1]},#{match[3]}#{",#{match[4]}" if match[4].present?}"
+      "#{version},#{match[1]},#{match[2].tr("()", ",")}"
     end
   end
 
-  pkg "Insta360Studio#{version.csv.second}_#{version.csv.first}(#{version.csv.fourth})_#{version.csv.fifth}.pkg"
+  pkg "Insta360Studio_#{version.csv.first}_#{version.csv.third}(#{version.csv.fourth})#{version.csv.fifth}.pkg"
 
   uninstall quit:    "com.insta360.studio",
             pkgutil: [
               "com.insta360.insta360Studio",
               "com.insta360.PremierePlugin",
               "com.insta360.ThumbnailPlugin",
-            ],
-            delete:  "/Applications/Insta360 Studio #{version.csv.third.split("_")[0]}.app"
+            ]
 
   zap trash: [
     "~/Library/Application Support/Insta360",

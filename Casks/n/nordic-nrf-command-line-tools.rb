@@ -1,6 +1,6 @@
 cask "nordic-nrf-command-line-tools" do
-  version "10.24.0"
-  sha256 "dadd90e0e983dc4805b7896c6b4672d81164e45ce91fac7f35c7ad0ee9a6f722"
+  version "10.24.2"
+  sha256 "c7f24bb4234e3e99e408a3f7cca568898a51779f2f337604c2e8d60466939c2e"
 
   url "https://nsscprodmedia.blob.core.windows.net/prod/software-and-other-downloads/desktop-software/nrf-command-line-tools/sw/versions-#{version.major}-x-x/#{version.dots_to_hyphens}/nrf-command-line-tools-#{version}-darwin.dmg",
       verified: "nsscprodmedia.blob.core.windows.net/"

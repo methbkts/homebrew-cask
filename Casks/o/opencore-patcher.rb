@@ -1,22 +1,36 @@
 cask "opencore-patcher" do
-  version "1.4.1"
-  sha256 "d9f1498b46a984c66b8fa38fe185bd4934c03298515e30465902b137e9b35148"
+  version "2.2.0"
+  sha256 "4437144a7d39f7dbf7f86d3b9730216049587af3c261f9468da8ad87d5501a25"
 
-  url "https://github.com/dortania/OpenCore-Legacy-Patcher/releases/download/#{version}/OpenCore-Patcher-GUI.app.zip",
+  url "https://github.com/dortania/OpenCore-Legacy-Patcher/releases/download/#{version}/OpenCore-Patcher.pkg",
       verified: "github.com/dortania/OpenCore-Legacy-Patcher/"
-  name "OpenCore Legacy Patcher GUI"
+  name "OpenCore Legacy Patcher"
   desc "Boot loader to inject/patch current features for unsupported Macs"
   homepage "https://dortania.github.io/OpenCore-Legacy-Patcher/"
 
-  app "OpenCore-Patcher.app"
+  auto_updates true
 
-  uninstall delete: "/Library/LaunchAgents/com.dortania.opencore-legacy-patcher.auto-patch.plist"
+  pkg "OpenCore-Patcher.pkg"
+
+  uninstall launchctl: [
+              "com.dortania.opencore-legacy-patcher.auto-patch",
+              "com.dortania.opencore-legacy-patcher.macos-update",
+            ],
+            pkgutil:   "com.dortania.opencore-legacy-patcher",
+            delete:    "/Applications/OpenCore-Patcher.app"
 
   zap trash: [
+    "/Library/Logs/DiagnosticReports/OpenCore-Patcher_*.*_resource.diag",
     "/Users/Shared/.com.dortania.opencore-legacy-patcher.plist",
+    "/Users/Shared/.OCLP-AutoPatcher-Log-*.txt",
+    "/Users/Shared/.OCLP-System-Log-*.txt",
+    "/Users/Shared/OpenCore-Patcher_*.log",
     "~/Library/Application Support/CrashReporter/OpenCore-Patcher*",
+    "~/Library/Caches/com.dortania.opencore-legacy-patcher",
+    "~/Library/Logs/Dortania",
     "~/Library/Preferences/com.dortania.opencore-legacy-patcher-wxpython.plist",
     "~/Library/Saved Application State/com.dortania.opencore-legacy-patcher-wxpython.savedState",
     "~/Library/Saved Application State/com.dortania.opencore-legacy-patcher.savedState",
+    "~/Library/WebKit/com.dortania.opencore-legacy-patcher",
   ]
 end

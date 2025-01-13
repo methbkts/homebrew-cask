@@ -9,27 +9,22 @@ module CiMatrix
 
   # Weight for each arch must add up to 1.0.
   INTEL_RUNNERS = {
-    { symbol: :big_sur,  name: "macos-11", arch: :intel } => 0.0,
-    { symbol: :monterey, name: "macos-12", arch: :intel } => 0.0,
     { symbol: :ventura,  name: "macos-13", arch: :intel } => 1.0,
   }.freeze
   ARM_RUNNERS = {
-    { symbol: :sonoma,   name: "macos-14", arch: :arm   } => 1.0,
+    { symbol: :sonoma,   name: "macos-14", arch: :arm   } => 0.0,
+    { symbol: :sequoia,   name: "macos-15", arch: :arm }  => 1.0,
   }.freeze
   RUNNERS = INTEL_RUNNERS.merge(ARM_RUNNERS).freeze
-
-  # This string uses regex syntax and is intended to be interpolated into
-  # `Regexp` literals, so the backslashes must be escaped to be preserved.
-  DEPENDS_ON_MACOS_ARRAY_MEMBER = '\\s*"?:([^\\s",]+)"?,?\\s*'
 
   def self.filter_runners(cask_content)
     # Retrieve arguments from `depends_on macos:`
     required_macos = case cask_content
-    when /depends_on\s+macos:\s+\[((?:#{DEPENDS_ON_MACOS_ARRAY_MEMBER})+)\]/o
-      Regexp.last_match(1).scan(/#{DEPENDS_ON_MACOS_ARRAY_MEMBER}/o).flatten.map(&:to_sym).map do |v|
+    when /depends_on\s+macos:\s+\[([^\]]+)\]/
+      Regexp.last_match(1).scan(/\s*(?:"([=<>]=)\s+)?:([^\s",]+)"?,?\s*/).map do |match|
         {
-          version:    v,
-          comparator: "==",
+          version:    match[1].to_sym,
+          comparator: match[0] || "==",
         }
       end
     when /depends_on\s+macos:\s+"?:([^\s"]+)"?/ # e.g. `depends_on macos: :big_sur`
@@ -86,9 +81,9 @@ module CiMatrix
     end
   end
 
-  def self.random_runner(avalible_runners = INTEL_RUNNERS)
-    avalible_runners.max_by { |(_, weight)| rand ** (1.0 / weight) }
-                    .first
+  def self.random_runner(available_runners = ARM_RUNNERS)
+    available_runners.max_by { |(_, weight)| rand ** (1.0 / weight) }
+                     .first
   end
 
   def self.runners(cask_content:)
@@ -139,7 +134,7 @@ module CiMatrix
 
     cask_files_to_check = if cask_names.any?
       cask_names.map do |cask_name|
-        Cask::CaskLoader.load(cask_name).sourcefile_path.relative_path_from(tap.path)
+        Cask::CaskLoader.find_cask_in_tap(cask_name, tap).relative_path_from(tap.path)
       end
     else
       changed_files[:modified_cask_files]

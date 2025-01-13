@@ -1,8 +1,8 @@
 cask "free-download-manager" do
-  version "6.20.0"
+  version "6.25"
   sha256 :no_check # required as upstream package is updated in-place
 
-  url "https://dn3.freedownloadmanager.org/#{version.major}/latest/fdm.dmg"
+  url "https://files2.freedownloadmanager.org/#{version.major}/latest/fdm.dmg"
   name "Free Download Manager"
   desc "Download accelerator and organiser"
   homepage "https://www.freedownloadmanager.org/"
@@ -39,4 +39,8 @@ cask "free-download-manager" do
         "~/Library/Application Support/Softdeluxe",
         "~/Library/Caches/Softdeluxe/",
       ]
+
+  caveats do
+    requires_rosetta
+  end
 end

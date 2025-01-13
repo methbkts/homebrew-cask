@@ -1,9 +1,9 @@
 cask "screaming-frog-seo-spider" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "19.4"
-  sha256 arm:   "5acc603d7e2f7dc81f2af928fe5e52be42faf3b6cc2c992311a09aee8a38258c",
-         intel: "c7c73864bc8563c20ce3b208ff86b8571ca115b9fbc5fa13e3f29b907538737b"
+  version "21.3"
+  sha256 arm:   "71edd20b7daaf78c3091c54e16e14c99d9be5293bf312465eaf6bdb65f742cd4",
+         intel: "cc64765b90ac782f4dfb1c971929022b0db91c4b44aa1996a445ae8ebea3c3cc"
 
   url "https://download.screamingfrog.co.uk/products/seo-spider/ScreamingFrogSEOSpider-#{version}-#{arch}.dmg"
   name "Screaming Frog SEO Spider"
@@ -14,6 +14,8 @@ cask "screaming-frog-seo-spider" do
     url :homepage
     regex(%r{href=.*?/ScreamingFrogSEOSpider[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg}i)
   end
+
+  depends_on macos: ">= :big_sur"
 
   app "Screaming Frog SEO Spider.app"
 

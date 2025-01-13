@@ -2,9 +2,9 @@ cask "notion" do
   arch arm: "-arm64"
   livecheck_folder = on_arch_conditional arm: "arm64", intel: "latest"
 
-  version "3.2.1"
-  sha256 arm:   "f594b986113c55985267097dcbcd397e491e81862295c30a1a5fd7c2e8ad7f61",
-         intel: "573b03a61a6f5f8e230116fadaf65820f37d3849b16f3988a7902da94b0bff8c"
+  version "4.3.0"
+  sha256 arm:   "184e5d3676882fab9db57498df41edbbe6095ad8547278c14f8dd7e67e02da5e",
+         intel: "842599f17872fd10c6691f8ac9a0e26771987a2f7e391b796cfb8f2aed90cd96"
 
   url "https://desktop-release.notion-static.com/Notion-#{version}#{arch}.dmg",
       verified: "desktop-release.notion-static.com/"
@@ -18,18 +18,18 @@ cask "notion" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :big_sur"
 
   app "Notion.app"
 
   zap trash: [
     "~/Library/Application Support/Caches/notion-updater",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/notion.id.sfl*",
     "~/Library/Application Support/Notion",
     "~/Library/Caches/notion.id*",
     "~/Library/Logs/Notion",
-    "~/Library/Preferences/ByHost/notion.id.*.plist",
-    "~/Library/Preferences/notion.id.helper.plist",
-    "~/Library/Preferences/notion.id.plist",
+    "~/Library/Preferences/ByHost/notion.id.*",
+    "~/Library/Preferences/notion.id.*",
     "~/Library/Saved Application State/notion.id.savedState",
     "~/Library/WebKit/notion.id",
   ]

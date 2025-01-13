@@ -1,9 +1,9 @@
 cask "openlp" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "3.1.0"
-  sha256 arm:   "5137ce466dcbfeb06c84d22f69027cab87da0f5250347ece7097398e29670bae",
-         intel: "51d3c8b6197bce3c4393263940f6779c3cfb17829d8bf7a3e2d722307315db3c"
+  version "3.1.6"
+  sha256 arm:   "42962f65bad08e4ef21877e803ed3bc200141dd83eb26ea443c3ae6bbcf7716c",
+         intel: "5d4ac7c4f068b38515faf70ae34f8023a79c2b331f6a104bab14fc734a592cfb"
 
   url "https://get.openlp.org/#{version}/OpenLP-#{version}-#{arch}.dmg"
   name "OpenLP"
@@ -16,4 +16,12 @@ cask "openlp" do
   end
 
   app "OpenLP.app"
+
+  zap trash: [
+    "~/Library/Application Support/openlp",
+    "~/Library/Caches/com.apple.helpd/Generated/org.openlp.OpenLP.help*",
+    "~/Library/Preferences/org.openlp.OpenLP.plist",
+    "~/Library/Preferences/org.openlp.plist",
+    "~/Library/Saved Application State/org.openlp.OpenLP.savedState",
+  ]
 end

@@ -1,9 +1,9 @@
 cask "rubymine" do
   arch arm: "-aarch64"
 
-  version "2023.3.4,233.14475.27"
-  sha256 arm:   "bbb442f4099567bbd632e9997385fde7ea844927458c9731a0e21aeb403092e8",
-         intel: "4527e537bf953d3c33de9d0cb8d2d566ef65fbe4234c7737bb82c1955c90e923"
+  version "2024.3.1.1,243.22562.213"
+  sha256 arm:   "1e96dcbaf0b6d6821de44f394a671780b21e88fbb05a3cf67d90fcfb9dcbc559",
+         intel: "6762f4987be03eb4d6adccc8b9e093598a86c77d341695792c985d9a35b84703"
 
   url "https://download.jetbrains.com/ruby/RubyMine-#{version.csv.first}#{arch}.dmg"
   name "RubyMine"
@@ -13,8 +13,12 @@ cask "rubymine" do
   livecheck do
     url "https://data.services.jetbrains.com/products/releases?code=RM&latest=true&type=release"
     strategy :json do |json|
-      json["RM"].map do |release|
-        "#{release["version"]},#{release["build"]}"
+      json["RM"]&.map do |release|
+        version = release["version"]
+        build = release["build"]
+        next if version.blank? || build.blank?
+
+        "#{version},#{build}"
       end
     end
   end
