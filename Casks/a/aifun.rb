@@ -1,6 +1,6 @@
 cask "aifun" do
-  version "0.8.1"
-  sha256 "01e75d1714ca6a4bf564f12ace7297dd9148d35659c1463f2ef11897af6a453a"
+  version "0.8.6"
+  sha256 "6db7de9eb8d16e4ed6f85a73653ebf600b8ce2b3a7428b29c6450ee9abe6e5db"
 
   url "https://static.aifun.kapokcloud.com/v#{version}/AiFun_#{version}_macos.dmg",
       verified: "static.aifun.kapokcloud.com/"
@@ -11,7 +11,7 @@ cask "aifun" do
   livecheck do
     url "https://static.aifun.kapokcloud.com/updater/updater.json"
     strategy :json do |json|
-      json["version"].sub("v", "")
+      json["version"]&.sub("v", "")
     end
   end
 

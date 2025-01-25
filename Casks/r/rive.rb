@@ -1,6 +1,6 @@
 cask "rive" do
-  version "0.8.1120"
-  sha256 "fd752af76aa353e0eabe8519045b258310c72a77a7573fcd9afe5a48d4404a8c"
+  version "0.8.2408"
+  sha256 "653c151b3281af9308fadaeaff723935d0f0ac2010302343a1d2335aa101f96d"
 
   url "https://releases.rive.app/macos/#{version}/Rive.dmg"
   name "Rive"
@@ -11,6 +11,8 @@ cask "rive" do
     url "https://releases.rive.app/release.xml"
     strategy :sparkle, &:short_version
   end
+
+  depends_on macos: ">= :mojave"
 
   app "Rive.app"
 

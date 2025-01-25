@@ -1,27 +1,34 @@
 cask "zed" do
-  version "0.125.3"
-  sha256 "028096423755583b9eac8312fccba6351e687226afeda15e278bd1382f94a1fb"
+  arch arm: "aarch64", intel: "x86_64"
 
-  url "https://zed.dev/api/releases/stable/#{version}/Zed.dmg"
+  version "0.170.2"
+  sha256 arm:   "c0ddcc9f209b775433bfa8185be89fac16418dbdf6b4d746d400aa22ac5019a2",
+         intel: "9410f6f16d29364aea43d4ae811d948abacf6ac95a35fd8375f1826e2d6098a2"
+
+  url "https://zed.dev/api/releases/stable/#{version}/Zed-#{arch}.dmg"
   name "Zed"
   desc "Multiplayer code editor"
   homepage "https://zed.dev/"
 
   livecheck do
-    url "https://zed.dev/releases/stable"
-    regex(%r{href=.*?/stable/(\d+(?:\.\d+)+)/Zed.dmg}i)
+    url "https://zed.dev/api/releases/latest?asset=Zed.dmg&stable=1&os=macos&arch=#{arch}"
+    strategy :json do |json|
+      json["version"]
+    end
   end
 
   auto_updates true
-  conflicts_with cask: "zed-preview"
   depends_on macos: ">= :catalina"
 
   app "Zed.app"
   binary "#{appdir}/Zed.app/Contents/MacOS/cli", target: "zed"
 
   zap trash: [
-    "~/.config/Zed",
+    "~/.config/zed",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/dev.zed.zed.sfl*",
     "~/Library/Application Support/Zed",
+    "~/Library/Caches/dev.zed.Zed",
+    "~/Library/HTTPStorages/dev.zed.Zed",
     "~/Library/Logs/Zed",
     "~/Library/Preferences/dev.zed.Zed.plist",
     "~/Library/Saved Application State/dev.zed.Zed.savedState",

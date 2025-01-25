@@ -15,8 +15,8 @@ cask "gpg-suite-pinentry" do
   conflicts_with cask: [
     "gpg-suite",
     "gpg-suite-no-mail",
-    "homebrew/cask-versions/gpg-suite-nightly",
-  ], formula: "gpg"
+    "gpg-suite@nightly",
+  ], formula: "gnupg"
   depends_on macos: ">= :mojave"
 
   pkg "Install.pkg",
@@ -164,9 +164,9 @@ cask "gpg-suite-pinentry" do
             ]
 
   zap trash: [
-    "~/Containers/com.apple.mail/Data/Library/Frameworks/Libmacgpg.framework",
     "~/Library/Application Support/GPGTools",
     "~/Library/Caches/org.gpgtools.gpg*",
+    "~/Library/Containers/com.apple.mail/Data/Library/Frameworks/Libmacgpg.framework",
     "~/Library/Containers/com.apple.mail/Data/Library/Preferences/org.gpgtools.*",
     "~/Library/Frameworks/Libmacgpg.framework",
     "~/Library/HTTPStorages/org.gpgtools.*",

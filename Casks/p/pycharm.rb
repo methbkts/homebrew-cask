@@ -1,9 +1,9 @@
 cask "pycharm" do
   arch arm: "-aarch64"
 
-  version "2023.3.4,233.14475.56"
-  sha256 arm:   "58dbf1628f59950d40be4ed73199ce92ef36be6735823d9566135ddea16c1718",
-         intel: "59512bbe61a9332f02e78d34b85ab2563b5dac2fa9882519ed27cfcbccef5dc2"
+  version "2024.3.1.1,243.22562.220"
+  sha256 arm:   "b2afcf6bb9a9a2fb6c516815ce08073429ea506f44c7cafa9503c59da310caae",
+         intel: "d0329b017d21c25426f625c31fb9e193b9dc0be17150675c1010d3bfd27f2ca2"
 
   url "https://download.jetbrains.com/python/pycharm-professional-#{version.csv.first}#{arch}.dmg"
   name "PyCharm"
@@ -14,8 +14,12 @@ cask "pycharm" do
   livecheck do
     url "https://data.services.jetbrains.com/products/releases?code=PCP&latest=true&type=release"
     strategy :json do |json|
-      json["PCP"].map do |release|
-        "#{release["version"]},#{release["build"]}"
+      json["PCP"]&.map do |release|
+        version = release["version"]
+        build = release["build"]
+        next if version.blank? || build.blank?
+
+        "#{version},#{build}"
       end
     end
   end

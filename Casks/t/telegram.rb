@@ -1,6 +1,6 @@
 cask "telegram" do
-  version "10.9,260554"
-  sha256 "61bb46e0a0f57897bbb4e1938cb04e244af5ea94db2cf1e0a09f103571f1e1b5"
+  version "11.6,270262"
+  sha256 "4a930c39fcf4def28a09bd4d9ad3582f2f0a5295de90301535ba503eec47d43f"
 
   url "https://osx.telegram.org/updates/Telegram-#{version.csv.first}.#{version.csv.second}.app.zip"
   name "Telegram for macOS"
@@ -9,14 +9,11 @@ cask "telegram" do
 
   livecheck do
     url "https://osx.telegram.org/updates/versions.xml"
-    strategy :page_match do |page|
-      page.scan(/Telegram[._-](\d+(?:\.\d+)+)\.(\d{6})\.app\.zip/)
-          .map { |matches| "#{matches[0]},#{matches[1]}" }
-    end
+    strategy :sparkle
   end
 
   auto_updates true
-  depends_on macos: ">= :el_capitan"
+  depends_on macos: ">= :high_sierra"
 
   app "Telegram.app"
 

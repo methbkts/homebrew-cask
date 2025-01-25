@@ -40,8 +40,8 @@ cask "calibre" do
     end
   end
   on_ventura :or_newer do
-    version "7.6.0"
-    sha256 "a7d6eaca6e3b8ff62b355da1cc897762d52ac148a1e1ce36a6eeb59006b240cb"
+    version "7.24.0"
+    sha256 "af6bbd8f0a153f8759ff3bfc6b6e26599d4237ad8736dbb854748061ae636c41"
 
     livecheck do
       url "https://calibre-ebook.com/dist/osx"
@@ -49,13 +49,14 @@ cask "calibre" do
     end
   end
 
+  # Do not change this URL to the GitHub repo. Releases are removed from GitHub
+  # after a new release, which breaks the cask. We have accepted that downloads
+  # from the homepage may be slow for some users.
+  # See https://github.com/Homebrew/homebrew-cask/pull/183664
   url "https://download.calibre-ebook.com/#{version}/calibre-#{version}.dmg"
   name "calibre"
   desc "E-books management software"
   homepage "https://calibre-ebook.com/"
-
-  conflicts_with cask: "calibre4"
-  depends_on macos: ">= :catalina"
 
   app "calibre.app"
   binary "#{appdir}/calibre.app/Contents/MacOS/calibre"

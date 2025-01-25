@@ -1,8 +1,8 @@
 cask "waterfox" do
-  version "6.0.9"
-  sha256 "c0433a7e89546dee1df553165760ef050aa72baff46c3b0b215bc83c18e473b7"
+  version "6.5.3"
+  sha256 "0456b88335d9175a81893f3eadfe94bbd9b4480f26614830abede2f3a9010a0d"
 
-  url "https://cdn1.waterfox.net/waterfox/releases/G#{version}/Darwin_x86_64-aarch64/Waterfox%20G#{version}.dmg"
+  url "https://cdn1.waterfox.net/waterfox/releases/#{version}/Darwin_x86_64-aarch64/Waterfox%20#{version}.dmg"
   name "Waterfox"
   desc "Web browser"
   homepage "https://www.waterfox.net/"
@@ -12,7 +12,8 @@ cask "waterfox" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :sierra"
+  auto_updates true
+  depends_on macos: ">= :catalina"
 
   app "Waterfox.app"
 

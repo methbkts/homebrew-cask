@@ -1,6 +1,6 @@
 cask "superlist" do
-  version "1.1.1"
-  sha256 "188f828b53a07c8035925e187db3503911d43e70459f11c54cd7d957eede31c1"
+  version "1.23.0"
+  sha256 "21852f2f099d377912c03682058d592140d5362c67661616f013add443e93d69"
 
   url "https://storage.googleapis.com/superlist-appcast/beta/updates/Superlist-#{version}.zip",
       verified: "storage.googleapis.com/superlist-appcast/beta/updates/"
@@ -14,7 +14,7 @@ cask "superlist" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on macos: ">= :catalina"
 
   app "Superlist.app"
 

@@ -6,8 +6,6 @@ cask "cd-to" do
     livecheck do
       skip "Legacy version"
     end
-
-    depends_on macos: ">= :mojave"
   end
   on_monterey :or_newer do
     version "3.1.3"
@@ -17,8 +15,6 @@ cask "cd-to" do
       url :url
       strategy :github_latest
     end
-
-    depends_on macos: ">= :monterey"
   end
 
   url "https://github.com/jbtule/cdto/releases/download/v#{version}/cdto_#{version.dots_to_underscores}.zip"
@@ -26,15 +22,19 @@ cask "cd-to" do
   desc "Finder Toolbar app to open the current directory in the Terminal"
   homepage "https://github.com/jbtule/cdto"
 
+  depends_on macos: ">= :mojave"
+
   app "cd to.app"
 
   caveats <<~EOS
     To complete installation:
-    1. Open the the Applications folder in finder.
+    1. Open the Applications folder in finder.
     2. Drag "cd to.app" onto the Finder toolbar while holding down the
     command(⌘) and option(⌥) keys.
 
     To use, just click on the new button and instantly opens a new Terminal.app
     window.
   EOS
+
+  # No zap stanza required
 end

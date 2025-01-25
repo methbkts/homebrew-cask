@@ -1,8 +1,8 @@
 cask "protopie" do
-  version "7.10.0"
-  sha256 "55f5e9e58360b4fd8b9ace1d8d65294c7782ff2d64343446a75995d1ec5f8f1e"
+  version "9.0.0"
+  sha256 "f0324271712b257563b45c45f5cd7f4b2dfae30721f330c75a5f5c697f78c902"
 
-  url "https://release.protopie.io/ProtoPie-#{version}.dmg"
+  url "https://release.protopie.io/ProtoPie-#{version}-universal.dmg"
   name "ProtoPie"
   desc "Create interactive prototypes"
   homepage "https://www.protopie.io/"
@@ -13,6 +13,7 @@ cask "protopie" do
   end
 
   auto_updates true
+  depends_on macos: ">= :catalina"
 
   app "ProtoPie.app"
 

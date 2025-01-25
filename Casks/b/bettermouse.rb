@@ -1,17 +1,18 @@
 cask "bettermouse" do
-  version "1.5.4612"
-  sha256 "1e0d53ab4ff986d8d2867e1c7ef247cffe4123208359f38e753e0b5914d863b4"
+  version "1.6,6797"
+  sha256 "27c1fc908cd8343cecd5199bf9041701037a3c2d5ac38992a67f0e615aef4783"
 
-  url "https://better-mouse.com/wp-content/uploads/BetterMouse.#{version}.zip"
+  url "https://better-mouse.com/wp-content/uploads/BetterMouse.#{version.csv.first}.#{version.csv.second}.zip"
   name "BetterMouse"
   desc "Utility improving 3rd party mouse performance and functionalities"
   homepage "https://better-mouse.com/"
 
   livecheck do
-    url :homepage
-    regex(/Version (\d+(?:\.\d+)+)/i)
+    url "https://api.appcenter.ms/v0.1/public/sparkle/apps/7079cb7c-52de-42cf-ac1f-a0d99cdd12f2"
+    strategy :sparkle
   end
 
+  auto_updates true
   depends_on macos: ">= :big_sur"
 
   app "BetterMouse.app"

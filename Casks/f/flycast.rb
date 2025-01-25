@@ -1,6 +1,6 @@
 cask "flycast" do
-  version "2.2"
-  sha256 "436702143ae8d8bbdd165784245e50249b9e27e56baaaa26823dfcecda56e2c2"
+  version "2.4"
+  sha256 "6606eaef7479bdd5edb161a73968ac982f6867ccf52b951ad01a4b8f49d6a782"
 
   url "https://github.com/flyinghead/flycast/releases/download/v#{version}/flycast-macOS-#{version}.zip"
   name "Flycast"
@@ -9,8 +9,10 @@ cask "flycast" do
 
   livecheck do
     url :url
-    regex(/^v?(\d+(?:\.\d+)+)$/i)
+    strategy :github_latest
   end
+
+  depends_on macos: ">= :high_sierra"
 
   app "Flycast.app"
 

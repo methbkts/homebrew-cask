@@ -1,9 +1,9 @@
 cask "macwhisper" do
-  version "7.7.1,737"
-  sha256 "a17dec15cd17f459a2a80f81a4d7d2b309335d6309ae81fc82c1dc27fa54a281"
+  version "11.5,1150"
+  sha256 "e9253343f3190875d0fbe8fcbf34d3946a99b219a276836cd6abfddf9e622590"
 
-  url "https://macwhisper-site.vercel.app/releases/MacWhisper-#{version.csv.second}.zip",
-      verified: "macwhisper-site.vercel.app/releases/"
+  url "https://stickytimers.app/macwhisper/MacWhisper-#{version.csv.second}.zip",
+      verified: "stickytimers.app/macwhisper/"
   name "MacWhisper"
   desc "Speech recognition tool"
   homepage "https://goodsnooze.gumroad.com/l/macwhisper"
@@ -13,12 +13,12 @@ cask "macwhisper" do
   livecheck do
     url "https://macwhisper-site.vercel.app/appcast.xml"
     strategy :sparkle do |items|
-      items.map { |item| "#{item.short_version},#{item.version}" }
+      items.map(&:nice_version)
     end
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: ">= :sonoma"
 
   app "MacWhisper.app"
 
@@ -30,6 +30,7 @@ cask "macwhisper" do
     "~/Library/HTTPStorages/com.goodsnooze.MacWhisper",
     "~/Library/HTTPStorages/com.goodsnooze.MacWhisper.binarycookies",
     "~/Library/Preferences/com.goodsnooze.MacWhisper.plist",
+    "~/Library/Saved Application State/com.goodsnooze.MacWhisper.savedState",
     "~/Library/WebKit/com.goodsnooze.MacWhisper",
   ]
 end

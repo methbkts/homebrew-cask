@@ -1,6 +1,6 @@
 cask "okta-advanced-server-access" do
-  version "1.79.2"
-  sha256 "0eefe246a21410a0b68047bfe94b43ed3530ce21bef74eb222ee81412f9d3048"
+  version "1.87.1"
+  sha256 "1a5ce5b4fc2c87078eddcef8f4c1eca59ae5c066d9b9ba857c102be1a38e0fbf"
 
   url "https://dist.scaleft.com/repos/macos/stable/all/macos-client/v#{version}/ScaleFT-#{version}.pkg",
       verified: "dist.scaleft.com/repos/macos/stable/all/macos-client/"
@@ -14,11 +14,18 @@ cask "okta-advanced-server-access" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :high_sierra"
+  auto_updates true
+  depends_on macos: ">= :catalina"
 
   pkg "ScaleFT-#{version}.pkg"
 
   uninstall pkgutil: "com.scaleft.ScaleFT"
 
-  zap trash: "~/Library/Caches/com.scaleft.ScaleFT"
+  zap trash: [
+    "~/Library/Application Support/ScaleFT",
+    "~/Library/Caches/com.scaleft.ScaleFT",
+    "~/Library/HTTPStorages/com.scaleft.ScaleFT",
+    "~/Library/Logs/ScaleFT",
+    "~/Library/Preferences/com.scaleft.ScaleFT.plist",
+  ]
 end
