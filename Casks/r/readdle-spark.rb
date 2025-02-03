@@ -1,6 +1,6 @@
 cask "readdle-spark" do
-  version "3.14.3.67452"
-  sha256 "c58e47a65b93ac39f1bc8095479b04e649b5d3b502105ea194073ebeb5515aaa"
+  version "3.20.3.97947"
+  sha256 "18e538ae80e3f1431a4b231c924ae88da1811cf415095c071711b6d0428374e1"
 
   url "https://downloads.sparkmailapp.com/Spark#{version.major}/mac/dist/#{version}/Spark.zip"
   name "Spark"
@@ -9,11 +9,13 @@ cask "readdle-spark" do
 
   livecheck do
     url "https://downloads.sparkmailapp.com/Spark#{version.major}/mac/dist/appcast.xml"
-    strategy :sparkle
+    strategy :sparkle do |items|
+      items.map(&:version)
+    end
   end
 
   auto_updates true
-  depends_on macos: ">= :el_capitan"
+  depends_on macos: ">= :big_sur"
 
   app "Spark Desktop.app"
 

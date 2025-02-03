@@ -1,6 +1,6 @@
 cask "ivideonserver" do
-  version "3.13.0"
-  sha256 "0a70fd3aff12d6eca6a3420b177c3128a46dcc941bd3c3adcdaf811c90b6b19a"
+  version "3.14.0"
+  sha256 "2728954313606436037da60d8f15510e7f50cebab87e4de667adde50b5d85396"
 
   url "https://updates.iv-cdn.com/bundles/ivideon_server/#{version}/IvideonServer_#{version}_macosx-x86-64.dmg",
       verified: "updates.iv-cdn.com/"
@@ -14,4 +14,10 @@ cask "ivideonserver" do
   end
 
   app "IvideonServer.app"
+
+  zap trash: "~/Library/Saved Application State/com.ivideon.IvideonServer.savedState"
+
+  caveats do
+    requires_rosetta
+  end
 end

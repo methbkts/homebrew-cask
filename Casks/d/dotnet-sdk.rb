@@ -2,12 +2,12 @@ cask "dotnet-sdk" do
   arch arm: "arm64", intel: "x64"
 
   on_arm do
-    version "8.0.201,ca8378e2-a2b8-4dc9-b54b-206feeff5ec5,22fdb7f35fab91ba799ea05bcae84742"
-    sha256 "bfa63f01d1180c4596f5b06e99cad6442dd665965e6d2b5fba333566a4ef1bea"
+    version "9.0.102,96489126-b9ba-414a-a2d0-d8c5b61a22be,fe047e117e9cc43738ba2222f4769da2"
+    sha256 "f128839d529d2908a4fa2068d06fab33bb6880790ed08966cad6ce844faf706a"
   end
   on_intel do
-    version "8.0.201,9508dade-753c-45eb-8220-216e8b552548,a5fc65c2b7ef2df9dfa003fbeac44f9f"
-    sha256 "3164400451529ce737e87e7b39e1c5a19dff977b44e775227ecced12b6d124cb"
+    version "9.0.102,2bda19b1-6389-4520-8e5e-363172398741,662eee446961503151bb78c29997933e"
+    sha256 "775a7cca2e7178db25cb1fd9d0cdd19415fcb19c4c184535169ffe3aa5923b0f"
   end
 
   url "https://download.visualstudio.microsoft.com/download/pr/#{version.csv.second}/#{version.csv.third}/dotnet-sdk-#{version.csv.first}-osx-#{arch}.pkg"
@@ -15,15 +15,25 @@ cask "dotnet-sdk" do
   desc "Developer platform"
   homepage "https://www.microsoft.com/net/core#macos"
 
+  # This identifies releases with the same major/minor version as the current
+  # cask version. New major/minor releases occur annually in November and the
+  # check will automatically update its behavior when the cask is updated.
   livecheck do
-    cask "dotnet"
-    regex(%r{/download/pr/([^/]+)/([^/]+)/dotnet-sdk-v?(\d+(?:\.\d+)+)-osx-#{arch}\.pkg}i)
+    url "https://builds.dotnet.microsoft.com/dotnet/release-metadata/#{version.major_minor}/releases.json"
+    regex(%r{/download/pr/([^/]+)/([^/]+)/dotnet-sdk[._-]v?(\d+(?:\.\d+)+)[._-]osx[._-]#{arch}\.pkg}i)
+    strategy :json do |json, regex|
+      json["releases"]&.map do |release|
+        release.dig("sdk", "files")&.map do |file|
+          file["url"]&.scan(regex)&.map { |match| "#{match[2]},#{match[0]},#{match[1]}" }
+        end
+      end&.flatten
+    end
   end
 
   conflicts_with cask: [
     "dotnet",
-    "dotnet-preview",
-    "dotnet-sdk-preview",
+    "dotnet-sdk@preview",
+    "dotnet@preview",
   ], formula: "dotnet"
   depends_on macos: ">= :mojave"
 

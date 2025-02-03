@@ -1,6 +1,6 @@
 cask "catlight" do
-  version "3.4.2"
-  sha256 "8db1124b8f0370c88ced685653ab5a647ecfe7ab84af1308ad457ec103c45ebd"
+  version "3.7.3"
+  sha256 "d0e279f07136d0665b5188386d2a3a59a8ad9a456c968fca196a5d260569f098"
 
   url "https://download.catlight.io/rel/mac/release/CatLightSetup-#{version}.zip"
   name "catlight"
@@ -22,4 +22,8 @@ cask "catlight" do
     "~/Library/Preferences/Catlight.plist",
     "~/Library/Saved Application State/Catlight.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

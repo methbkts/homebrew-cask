@@ -1,9 +1,9 @@
 cask "pycharm-ce" do
   arch arm: "-aarch64"
 
-  version "2023.3.4,233.14475.56"
-  sha256 arm:   "885ed6dcb7b99147e345ce2d088e2636e8317a5e71ff67e9bc9d0f770266646e",
-         intel: "492268d99fec38fa81bd02772ed57b243403ecad1f5f28b3a1150502cf8b4a6c"
+  version "2024.3.2,243.23654.177"
+  sha256 arm:   "855440e5a38705d8cd1d0d6b5d3fe4817fdfde62fd1bc934c51de16cd6227ba9",
+         intel: "7244a81461290b1e555e5de9e00ddfad18ece5d31383a6539e0feaa1a734b233"
 
   url "https://download.jetbrains.com/python/pycharm-community-#{version.csv.first}#{arch}.dmg"
   name "Jetbrains PyCharm Community Edition"
@@ -14,8 +14,12 @@ cask "pycharm-ce" do
   livecheck do
     url "https://data.services.jetbrains.com/products/releases?code=PCC&latest=true&type=release"
     strategy :json do |json|
-      json["PCC"].map do |release|
-        "#{release["version"]},#{release["build"]}"
+      json["PCC"]&.map do |release|
+        version = release["version"]
+        build = release["build"]
+        next if version.blank? || build.blank?
+
+        "#{version},#{build}"
       end
     end
   end

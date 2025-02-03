@@ -1,6 +1,6 @@
 cask "mp3tag" do
-  version "1.8.15"
-  sha256 "7822a2fe70fe1da536041a3f5d5d9f33c5dce95389deefb1549062b268d24af8"
+  version "1.8.27"
+  sha256 "2dc3c69514f002ec5ae1eda6db35fdb2b5c340ce946e6ac3f1457a28a7a2455f"
 
   url "https://updates.mp3tag.app/Mp3tag-#{version}.zip"
   name "Mp3tag"

@@ -1,9 +1,9 @@
 cask "gitkraken" do
   arch arm: "darwin-arm64", intel: "darwin"
 
-  version "9.13.0"
-  sha256 arm:   "60a42dd3f127f16561d0cf8c9e774a275066ee2112c218a739b03254695266cb",
-         intel: "bc56fba77dcf4005164e4de928d01c746f9c3db098aac3d96b4aee821639039f"
+  version "10.6.3"
+  sha256 arm:   "3471b3ea1f626dbec4a1502cd8a8e8172fdad3e93674c8be84e6d613528c7aa6",
+         intel: "fb77f1a687cf6ef4fea27a99cbb28176c909bedcb82230a86a5a65f9d5e21a42"
 
   url "https://release.axocdn.com/#{arch}/GitKraken-v#{version}.zip",
       verified: "release.axocdn.com/"
@@ -12,11 +12,14 @@ cask "gitkraken" do
   homepage "https://www.gitkraken.com/"
 
   livecheck do
-    url "https://help.gitkraken.com/gitkraken-client/current/"
-    regex(/Version\s(\d+(?:\.\d+)+)/i)
+    url "https://release.axocdn.com/#{arch}/RELEASES?v=0.0.0&darwin=999"
+    strategy :json do |json|
+      json["name"]
+    end
   end
 
   auto_updates true
+  conflicts_with cask: "gitkraken-on-premise-serverless"
   depends_on macos: ">= :el_capitan"
 
   app "GitKraken.app"

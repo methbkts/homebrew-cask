@@ -1,8 +1,8 @@
 cask "sqlitestudio" do
-  version "3.4.4"
-  sha256 "bd1bf5cd0e442b867ef9417e6c849d7b9f4d38f4305804c4b9d58d905092d8ef"
+  version "3.4.15"
+  sha256 "6b546bb03cf8d82ccd35f34c4633cb79b53adfe50dfd3c31d8a0c89bbf38de07"
 
-  url "https://github.com/pawelsalawa/sqlitestudio/releases/download/#{version}/SQLiteStudio-#{version}.dmg",
+  url "https://github.com/pawelsalawa/sqlitestudio/releases/download/#{version}/sqlitestudio-#{version}-macos-x64.dmg",
       verified: "github.com/pawelsalawa/sqlitestudio/releases/download/"
   name "SQLiteStudio"
   desc "Create, edit, browse SQLite databases"
@@ -17,4 +17,8 @@ cask "sqlitestudio" do
     "~/Library/Saved Application State/com.yourcompany.SQLiteStudio.savedState",
     "~/Library/Saved Application State/pl.com.salsoft.SQLiteStudio.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

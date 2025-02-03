@@ -1,6 +1,6 @@
 cask "tsh" do
-  version "15.1.3"
-  sha256 "e16f8ad3a7cdf34d5e67bf91df84f174c16b56ef78035b8ab2ed1d39683b84f2"
+  version "16.4.7"
+  sha256 "b101344390382c8e3d858f2ff5fbd59658552fe0d832a946578219ec10347b20"
 
   url "https://cdn.teleport.dev/tsh-#{version}.pkg",
       verified: "cdn.teleport.dev/"
@@ -8,12 +8,12 @@ cask "tsh" do
   desc "SSH server for teams managing distributed infrastructure"
   homepage "https://goteleport.com/"
 
-  livecheck do
-    url "https://goteleport.com/download/"
-    regex(/tsh[._-]v?(\d+(?:\.\d+)+)\.pkg/i)
-  end
+  deprecate! date: "2024-11-18", because: :unmaintained, replacement: "teleport"
 
-  conflicts_with cask:    "homebrew/cask-versions/tsh13",
+  conflicts_with cask:    [
+                   "teleport",
+                   "tsh@13",
+                 ],
                  formula: "teleport"
 
   pkg "tsh-#{version}.pkg"

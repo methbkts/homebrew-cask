@@ -13,12 +13,10 @@ cask "propresenter" do
         end
       end
     end
-
-    depends_on macos: ">= :big_sur"
   end
   on_monterey :or_newer do
-    version "7.16.1,118489346"
-    sha256 "dc07626ca64e37f4f0f4a10e07dd79e76962a92511abaf822a4a12448f7fcba2"
+    version "18.1,302055490"
+    sha256 "61ebc003e027d3b873ff831f5b7cdc91d0494b2a2dff454db446295e24f6b2db"
 
     livecheck do
       url "https://api.renewedvision.com/v1/pro/upgrade?platform=macos&osVersion=#{MacOS.full_version}&appVersion=0&buildNumber=0&includeNotes=0"
@@ -30,8 +28,6 @@ cask "propresenter" do
         end
       end
     end
-
-    depends_on macos: ">= :monterey"
   end
 
   url "https://renewedvision.com/downloads/propresenter/mac/ProPresenter_#{version.csv.first}_#{version.csv.second}.zip"
@@ -40,7 +36,8 @@ cask "propresenter" do
   homepage "https://renewedvision.com/propresenter/"
 
   auto_updates true
-  conflicts_with cask: "homebrew/cask-versions/propresenter-beta"
+  conflicts_with cask: "propresenter@beta"
+  depends_on macos: ">= :big_sur"
 
   app "ProPresenter.app"
 

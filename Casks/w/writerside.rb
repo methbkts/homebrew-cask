@@ -1,9 +1,9 @@
 cask "writerside" do
   arch arm: "-aarch64"
 
-  version "2023.3,233.14389"
-  sha256 arm:   "c32976ad97d3ee2f9a3914b93ddeb6a3a8481d28620edea4081005150ffddc97",
-         intel: "33b677f0c4214b69b77288e6c8e4a951b3d9b1240d057d22634fbba0b8259a07"
+  version "2024.3,243.22562.371"
+  sha256 arm:   "9d86ef50b4c6d2a07d236219e9b05c0557241fb017d52ac395719bdb425130f5",
+         intel: "0c78b8035497c855aea5666256716778abd46dadf68f51e4f91c0db01f62b280"
 
   url "https://download.jetbrains.com/writerside/writerside-#{version.csv.second}#{arch}.dmg"
   name "Writerside"
@@ -13,14 +13,18 @@ cask "writerside" do
   livecheck do
     url "https://data.services.jetbrains.com/products/releases?code=WRS&latest=true&type=eap"
     strategy :json do |json|
-      json["WRS"].map do |release|
-        "#{release["version"]},#{release["build"]}"
+      json["WRS"]&.map do |release|
+        version = release["version"]
+        build = release["build"]
+        next if version.blank? || build.blank?
+
+        "#{version},#{build}"
       end
     end
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :high_sierra"
 
   app "Writerside #{version.before_comma} EAP.app", target: "Writerside.app"
   binary "#{appdir}/Writerside.app/Contents/MacOS/writerside"
