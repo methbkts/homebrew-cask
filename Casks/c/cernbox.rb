@@ -1,18 +1,21 @@
 cask "cernbox" do
-  version "4.1.0.11373"
-  sha256 "8a54f84f376ad9844cc2251172cf9272418319180b98e424159ae4119499b9e2"
+  arch arm: "arm64", intel: "x86_64"
 
-  url "https://cernbox.cern.ch/cernbox/doc/MacOSX/cernbox-#{version}-x86_64.pkg"
+  version "5.3.1.14387"
+  sha256 arm:   "027da01a323f0d897658127aa06ef98bcab06e7f4b3234f0cc15868bc9dc76fe",
+         intel: "f16c2b102000e6ec1f077a74b09c7b8bae970bc04c3c7b208df8d58c2b73d540"
+
+  url "https://cernbox.cern.ch/cernbox/doc/MacOSX/cernbox-#{version}-#{arch}.pkg"
   name "CERNBox Client"
   desc "Cloud storage for CERN users"
   homepage "https://cernbox.web.cern.ch/cernbox/"
 
   livecheck do
     url "https://cernbox.web.cern.ch/cernbox/downloads/"
-    regex(%r{href=.*?/cernbox[._-]v?(\d+(?:\.\d+)+)-x86_64.pkg}i)
+    regex(/href=.*?cernbox[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.pkg/i)
   end
 
-  pkg "cernbox-#{version}-x86_64.pkg"
+  pkg "cernbox-#{version}-#{arch}.pkg"
 
   uninstall signal:     ["TERM", "ch.cern.cernbox"],
             login_item: "cernbox",
@@ -29,8 +32,4 @@ cask "cernbox" do
     "~/Library/Preferences/ch.cern.cernbox.plist",
     "~/Library/Saved Application State/ch.cern.cernbox.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

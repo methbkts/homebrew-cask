@@ -1,9 +1,9 @@
 cask "forkgram-telegram" do
   arch arm: "arm64", intel: "x86"
 
-  version "4.15.1"
-  sha256 arm:   "7f99cba4bec417ee09cbe1a55cc019da5f15d67632786fa4f38bf5cfc7bee82b",
-         intel: "3b733fa5ad8fe96555d8230838bf19dc0bab63906de22e0dd0849b4d1f999d0d"
+  version "5.10.7"
+  sha256 arm:   "c9100185f85a9c4e4b84ad4b582ce9f58f84951332199767167c2879ef500256",
+         intel: "2311d99fe813a029b115fbc57e7f3ec5c37a2e6b4c5004089c3d472abe00fc12"
 
   url "https://github.com/Forkgram/tdesktop/releases/download/v#{version}/Forkgram.macOS.no.auto-update_#{arch}.zip"
   name "Forkgram"
@@ -22,13 +22,15 @@ cask "forkgram-telegram" do
         next if release["draft"] || release["prerelease"]
         next unless release["assets"]&.any? { |asset| asset["name"]&.match?(file_regex) }
 
-        match = release["tag_name"].match(regex)
+        match = release["tag_name"]&.match(regex)
         next if match.blank?
 
         match[1]
       end
     end
   end
+
+  depends_on macos: ">= :high_sierra"
 
   # Renamed to avoid conflict with telegram
   app "Telegram.app", target: "Forkgram.app"

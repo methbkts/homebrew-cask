@@ -1,17 +1,17 @@
 cask "anki" do
   arch arm: "apple", intel: "intel"
 
-  version "23.12.1"
+  version "24.11"
 
   on_catalina :or_older do
-    sha256 "560138d3b03b7e5ad68df8e92f54df239ad3c2af65507fdb54550665591ae9db"
+    sha256 "4d44b763ea114e2aae61aaaa8171fd54a9095a06cd8e84a863675b1bbc75a24a"
 
     url "https://github.com/ankitects/anki/releases/download/#{version}/anki-#{version}-mac-#{arch}-qt5.dmg",
         verified: "github.com/ankitects/anki/"
   end
   on_big_sur :or_newer do
-    sha256 arm:   "6dd682a928e37bceb0995288159ab3b8568467b49642bec2012fc79b50a938c8",
-           intel: "cf8f11101d78a7badbe74b72f6eff6eb0c74b18e1065be298fac0e5ec48109d8"
+    sha256 arm:   "004a72ad9050fb4148f42c7009a70695b303319ede79b0513e443436cb6e6e79",
+           intel: "77de257e4d695098319380f2970f9f0b6aadf307d127bb494189be0a1a752799"
 
     url "https://github.com/ankitects/anki/releases/download/#{version}/anki-#{version}-mac-#{arch}-qt6.dmg",
         verified: "github.com/ankitects/anki/"
@@ -30,5 +30,9 @@ cask "anki" do
 
   app "Anki.app"
 
-  zap trash: "~/Library/Application Support/Anki*"
+  zap trash: [
+    "~/Library/Application Support/Anki*",
+    "~/Library/Caches/Anki",
+    "~/Library/Saved Application State/net.ankiweb.dtop.savedState",
+  ]
 end

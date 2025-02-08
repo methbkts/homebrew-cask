@@ -1,6 +1,6 @@
 cask "cisco-jabber" do
-  version "20231225070508"
-  sha256 "8e8a18e64ec37932b80da17d4eed7f0fa72bbdc4f6906eab181e4347ff67bbdd"
+  version "20241220015538"
+  sha256 "0b80ed5a4785a82fee809e2e05932cf218523d193832fba2746844e1a3ebffb9"
 
   url "https://binaries.webex.com/jabberclientmac/#{version}/Install_Cisco-Jabber-Mac.pkg"
   name "Cisco Jabber"
@@ -9,7 +9,7 @@ cask "cisco-jabber" do
 
   livecheck do
     url :homepage
-    regex(%r{jabberAppUrl =.*?(\d+)/Install[._-]Cisco[._-]Jabber[._-]Mac.pkg}i)
+    regex(%r{jabberAppUrl =.*?(\d+)/Install[._-]Cisco[._-]Jabber[._-]Mac\.pkg}i)
   end
 
   pkg "Install_Cisco-Jabber-Mac.pkg"
@@ -28,4 +28,12 @@ cask "cisco-jabber" do
               "/Library/Application Support/Cisco/Unified Communications/Jabber/",
               "/Library/Logs/Jabber/",
             ]
+
+  zap trash: [
+    "~/Library/Application Support/Cisco/Unified Communications/Jabber",
+    "~/Library/Caches/com.cisco.Jabber",
+    "~/Library/Logs/Jabber",
+    "~/Library/Preferences/com.cisco.Jabber.plist",
+    "~/Library/WebKit/com.cisco.Jabber",
+  ]
 end

@@ -1,16 +1,24 @@
 cask "yealink-meeting" do
-  version "4.6.11,543d408085a2db8ffcf0860ca37f41b5"
-  sha256 "d3bd1399ac280efae84954b4dec2865a0b309f66173d8e4391f79b9799785c84"
+  arch arm: "arm", intel: "X86"
 
-  url "https://download.ylyun.com/yealink-meeting/macos/latest/Yealink-Meeting.dmg?v=#{version.csv.second}"
+  on_arm do
+    version "4.7.12,926bdd3764ceebc87135c11656a7326c"
+    sha256 "95f4a71ccae8284e3b27c26ccc6c617a373f003f550e21815ccc705a1a4f5caa"
+  end
+  on_intel do
+    version "4.7.11,94bcfa4662cabecc2c083941a8083336"
+    sha256 "a680ee1d345d8000b2d94a2484dfda6f7810cf636bc046025d5d2f5977c7bac4"
+  end
+
+  url "https://download.ylyun.com/yealink-meeting/mac-#{arch}/latest/Yealink-Meeting-#{arch}.dmg?v=#{version.csv.second}"
   name "Yealink Meeting"
   desc "Video communication and virtual meeting platform"
   homepage "https://www.ylyun.com/portal/pc/Download"
 
   livecheck do
-    url "https://www.ylyun.com/portal/front/appPackageInfo?type=macos"
+    url "https://www.ylyun.com/portal/front/appPackageInfo?type=mac-#{arch}"
     strategy :json do |json|
-      "#{json["data"]["packageVersion"]},#{json["data"]["md5"]}"
+      "#{json.dig("data", "packageVersion")},#{json.dig("data", "md5")}"
     end
   end
 

@@ -1,18 +1,13 @@
 cask "fig" do
-  version "2.17.1"
-  sha256 "c6d1a4113a82055f3efcff8417a8a74e6835bb4a46d0937bad301e7e27db4f46"
+  version "2.19.0"
+  sha256 "6f0caf57e1251ca06c315c23957734b5c9246fa5af8f1424d5836054ebdd6514"
 
   url "https://repo.fig.io/generic/stable/asset/#{version}/universal/fig.dmg"
   name "fig"
   desc "Reimagine your terminal"
   homepage "https://fig.io/"
 
-  livecheck do
-    url "https://repo.fig.io/generic/stable/index.json"
-    strategy :json do |json|
-      json["hints"]["livecheck"]
-    end
-  end
+  deprecate! date: "2024-08-03", because: :discontinued
 
   auto_updates true
   depends_on macos: ">= :high_sierra"

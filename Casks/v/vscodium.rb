@@ -1,17 +1,22 @@
 cask "vscodium" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.87.1.24068"
-  sha256 arm:   "38372ecd1b0d8c0a008ce9701d8168a8748cd021ed664130474bdac5c62dfbc4",
-         intel: "203f7b166965da00a2c002769741315a6da37da2556a5f7aad258db41d16340d"
+  version "1.97.0.25037"
+  sha256 arm:   "6985346327bd7f8b41dc7ebc87e923d17d7b3b4e5148285eef2e4c92c80a54de",
+         intel: "52e8431e1be1d0bb831a320dafbb986dafaea667f89f4fe9e46c930e13e117d8"
 
   url "https://github.com/VSCodium/vscodium/releases/download/#{version}/VSCodium.#{arch}.#{version}.dmg"
   name "VSCodium"
   desc "Binary releases of VS Code without MS branding/telemetry/licensing"
   homepage "https://github.com/VSCodium/vscodium"
 
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :catalina"
 
   app "VSCodium.app"
   binary "#{appdir}/VSCodium.app/Contents/Resources/app/bin/codium"

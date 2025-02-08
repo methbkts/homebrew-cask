@@ -1,9 +1,9 @@
 cask "eclipse-rcp" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "4.30.0,2023-12"
-  sha256 arm:   "46aab70eff663db9c97397893e491e9ce58eafb10340041e78d674c8ca66b089",
-         intel: "aee53208dbd459fab229758fc1770d28f0464de1ab997c2af021568ea032b487"
+  version "4.34.0,2024-12"
+  sha256 arm:   "c4b5ee43c4bc64a87abd7c3ecaeda1f29abca420d1b43b5ace5514a2e8998eda",
+         intel: "d118a7d847dd390410c17869e77c9982b011d62cdf9c71498629597846582280"
 
   url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.csv.second}/R/eclipse-rcp-#{version.csv.second}-R-macosx-cocoa-#{arch}.dmg&r=1"
   name "Eclipse for RCP and RAP Developers"

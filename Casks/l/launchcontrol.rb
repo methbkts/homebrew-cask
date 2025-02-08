@@ -8,20 +8,18 @@ cask "launchcontrol" do
     end
   end
   on_big_sur :or_newer do
-    version "2.5.3"
-    sha256 "fbf8e3dad5ef7e13b39c5e0b1b2b8bddb0c45f93aa1a2882a094738a6862267e"
+    version "2.8"
+    sha256 "dcf0442700e984614d824a1be7f7371dcc69a1438c844f5e3ed3f2e83ff4240b"
 
     livecheck do
       url "https://www.soma-zone.com/LaunchControl/a/appcast-update-#{version.major}.xml"
       strategy :sparkle, &:short_version
     end
-
-    depends_on macos: ">= :big_sur"
   end
 
   url "https://www.soma-zone.com/download/files/LaunchControl-#{version}.tar.xz"
   name "LaunchControl"
-  desc "Create, manage and debug system- and user services"
+  desc "Create, manage and debug system and user services"
   homepage "https://www.soma-zone.com/LaunchControl/"
 
   auto_updates true

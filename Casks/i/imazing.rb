@@ -1,6 +1,6 @@
 cask "imazing" do
-  version "2.17.17,17670"
-  sha256 "58cbc8dc6f29b13971106308cb5ea1fe3676140663842852932958bf5465eede"
+  version "3.0.6,21166"
+  sha256 "7fedf8bf5f85c73f00c2aa38881e1b66eed92a3fc4441536de17af7a9f1bd8e2"
 
   url "https://downloads.imazing.com/mac/iMazing/#{version.csv.first}.#{version.csv.second}/iMazing_#{version.csv.first}.#{version.csv.second}.dmg"
   name "iMazing"
@@ -35,9 +35,4 @@ cask "imazing" do
     "~/Library/Preferences/com.DigiDNA.iMazing#{version.major}Mac.Mini.plist",
     "~/Library/Preferences/com.DigiDNA.iMazing#{version.major}Mac.plist",
   ]
-
-  caveats <<~EOS
-    Performing a zap on this cask removes files pertaining to both #{token}
-    and imazing-mini. It should be done only if you want to uninstall both.
-  EOS
 end

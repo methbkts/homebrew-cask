@@ -1,6 +1,6 @@
 cask "egnyte" do
-  version "0.10.4,2108"
-  sha256 "b8e28272228aa1e09a8cf9f12a0e2f0b4a6f59bb70a93646046f02e13aa69613"
+  version "1.4.0,2184"
+  sha256 "22a8575431b1726cf3dba686ba55196bcfeb0165573a83d00c662707675a8c76"
 
   url "https://egnyte-cdn.egnyte.com/desktopapp/mac/en-us/#{version.csv.first}/Egnyte_#{version.csv.first}_#{version.csv.second}.dmg"
   name "Egnyte"
@@ -12,7 +12,7 @@ cask "egnyte" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: ">= :ventura"
 
   app "Egnyte.app"
 

@@ -1,6 +1,6 @@
 cask "ipfs" do
-  version "0.33.0"
-  sha256 "74665ea061388bc464143269ed314a5cc16a80f869ea2121414926f66c9b9da4"
+  version "0.41.1"
+  sha256 "26f3917d87608743cd50c26ce77504a61fe4a3883e9055fb37ad2d5ce06b7386"
 
   url "https://github.com/ipfs/ipfs-desktop/releases/download/v#{version}/ipfs-desktop-#{version}-mac.dmg"
   name "IPFS Desktop"
@@ -13,7 +13,7 @@ cask "ipfs" do
   end
 
   auto_updates true
-  depends_on macos: ">= :el_capitan"
+  depends_on macos: ">= :big_sur"
 
   app "IPFS Desktop.app"
 

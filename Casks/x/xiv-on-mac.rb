@@ -1,6 +1,6 @@
 cask "xiv-on-mac" do
-  version "4.13.6"
-  sha256 "43fb22299de147190b19c5b39d32284d7cb1f77bf3d764574dc3fed61f7886ce"
+  version "5.0.2"
+  sha256 "b44410fdf4f2c9245ea3eddfdb58cd09f8e417db821ceac5d7ee530075ad1459"
 
   url "https://softwareupdate.xivmac.com/sites/default/files/update_data/XIV%20on%20Mac#{version}.tar.xz"
   name "XIV on Mac"
@@ -13,7 +13,7 @@ cask "xiv-on-mac" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: ">= :ventura"
 
   app "XIV on Mac.app"
 

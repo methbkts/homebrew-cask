@@ -1,6 +1,6 @@
 cask "principle" do
-  version "6.33"
-  sha256 "80c1e23017dc20ce419b5d178339b738715cf2d1373f89d528c0a645c42abbb5"
+  version "6.38"
+  sha256 "a10ed4635ca851d8521df23db2e0f2f9d7e4f7fd67e450a13bab0a53a6058708"
 
   url "https://principleformac.com/download/Principle_#{version.dots_to_underscores}.zip"
   name "Principle"
@@ -11,6 +11,8 @@ cask "principle" do
     url "https://principleformac.com/update2.xml"
     strategy :sparkle, &:short_version
   end
+
+  depends_on macos: ">= :mojave"
 
   app "Principle.app"
 

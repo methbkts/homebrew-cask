@@ -1,6 +1,6 @@
 cask "protokol" do
-  version "0.5.4,105"
-  sha256 "d717c96a8276b94408bd5bb595079871a0cacb3404c7adb9ef39cc2028cbe536"
+  version "0.5.9,121"
+  sha256 "74ca97b17907528fda9f8b796ce8f73fa04235c05e88268835e20a8c1a47eba0"
 
   url "https://hexler.net/pub/protokol/protokol-#{version.csv.first}.#{version.csv.second}-macos.dmg"
   name "protokol"
@@ -13,6 +13,7 @@ cask "protokol" do
   end
 
   auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "Protokol.app"
 
