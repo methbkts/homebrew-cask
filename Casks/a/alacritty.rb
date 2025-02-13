@@ -1,6 +1,6 @@
 cask "alacritty" do
-  version "0.13.1"
-  sha256 "f6b9bcee5ff0e87ae80379c01c59dd4479670c3c628f6759909cb447f6dd5e98"
+  version "0.15.0"
+  sha256 "5bdaac025b53010c65caa7a05c8a4a5b6b1c0b1e0c5e77eb2f0b1c4d8fca33e6"
 
   url "https://github.com/alacritty/alacritty/releases/download/v#{version}/Alacritty-v#{version}.dmg"
   name "Alacritty"
@@ -30,7 +30,7 @@ cask "alacritty" do
   manpage "Alacritty.app/Contents/Resources/alacritty-bindings.5.gz"
 
   zap trash: [
-    "~/Library/Preferences/io.alacritty.plist",
-    "~/Library/Saved Application State/io.alacritty.savedState",
+    "~/Library/Preferences/org.alacritty.plist",
+    "~/Library/Saved Application State/org.alacritty.savedState",
   ]
 end

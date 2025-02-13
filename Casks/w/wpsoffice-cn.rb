@@ -1,9 +1,9 @@
 cask "wpsoffice-cn" do
   arch arm: "arm64", intel: "x64"
 
-  version "6.5.2,8766"
-  sha256 arm:   "05aac5908e1f381271601547102e84fa27027a53145f21ae1bc8ee47f359f12c",
-         intel: "bb1095a041d25c0153e2da9727a59e51c74b563e600331c4e4cadfd2b8275fe4"
+  version "7.2.0,8943"
+  sha256 arm:   "0d400b59b4ac12d2ac04510d16f6a9511e739f629bb6afca2cfd6bf3d41635ef",
+         intel: "c48243b0632e21a44dea5926703874bcbf1e4c1643afcc8a95aeab6ade333c3a"
 
   url "https://package.mac.wpscdn.cn/mac_wps_pkg/#{version.csv.first}/WPS_Office_#{version.csv.first}(#{version.csv.second})_#{arch}.dmg",
       verified: "package.mac.wpscdn.cn/mac_wps_pkg/"
@@ -14,13 +14,13 @@ cask "wpsoffice-cn" do
   livecheck do
     url :homepage
     regex(%r{>\s*v?(\d+(?:\.\d+)+)\s*[_\uff08(](\d+)[_\uff09)]\s*/\s*\d+(?:\.\d+)*\s*<}im)
-    strategy :page_match do |page|
+    strategy :page_match do |page, regex|
       page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
     end
   end
 
   conflicts_with cask: "wpsoffice"
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :high_sierra"
 
   app "wpsoffice.app"
 

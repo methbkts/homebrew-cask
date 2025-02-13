@@ -1,8 +1,10 @@
 cask "futubull" do
-  version "14.4.6208"
-  sha256 "fabeb510d1effde8a8ed0d7046de38b083cb7826f690ae87d949a3f81c16f425"
+  version "15.3.10208"
+  sha256 "11f6ec1e03d3020737f48cfef61fd7817e3b1043b7a250c8f589a6099e0e7179"
 
-  url "https://softwarefile.futunn.com/FTNNForMac_#{version}_Website.dmg"
+  url "https://softwaredownload.futunn.com/FTNNForMac_#{version}_Website.dmg",
+      user_agent: :fake,
+      referer:    "https://www.futunn.com/"
   name "Futubull"
   name "FutuNiuniu"
   desc "Trading application"
@@ -12,6 +14,8 @@ cask "futubull" do
     url "https://www.futunn.com/download/history?client=11"
     regex(/FTNNForMac[._-]v?(\d+(?:\.\d+)+)[._-]Website\.dmg/i)
   end
+
+  depends_on macos: ">= :high_sierra"
 
   # Renamed for consistency: app name is different in the Finder and in a shell.
   app "FutuNiuniu.app", target: "Futubull.app"

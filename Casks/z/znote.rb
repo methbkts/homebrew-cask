@@ -1,9 +1,9 @@
 cask "znote" do
   arch arm: "-arm64"
 
-  version "2.5.3"
-  sha256 arm:   "296c990546ffdbda6c09629312ea77923df3bca514d90513c019e5811c19c84e",
-         intel: "db92f2fcdf919886408cadd8ae187c8ea3e4f5781ece94c05092803424aafd32"
+  version "2.7.11"
+  sha256 arm:   "bc6125460e223768cd28530d7f0792bd3f4f436ed9d7548c21384583225d6772",
+         intel: "5de59feb278799b5193a1f07bac579894eade0427cab13c1b0e35f2db6a2066e"
 
   url "https://github.com/alagrede/znote-app/releases/download/v#{version}/znote-#{version}#{arch}.dmg",
       verified: "github.com/alagrede/znote-app/"
@@ -11,7 +11,12 @@ cask "znote" do
   desc "Notes-taking app"
   homepage "https://znote.io/"
 
-  depends_on macos: ">= :el_capitan"
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  depends_on macos: ">= :catalina"
 
   app "znote.app"
 

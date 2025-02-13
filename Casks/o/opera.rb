@@ -1,6 +1,6 @@
 cask "opera" do
-  version "108.0.5067.20"
-  sha256 "be3850f57e1424c4d31511df3926e1b14de780f83cc5f1b9569f8bb9c029e8da"
+  version "117.0.5408.32"
+  sha256 "e8f762efe944fc35b9ab1d5fdbb4412bc96280b7f815620e9a95c5d0aa982bba"
 
   url "https://get.geo.opera.com/pub/opera/desktop/#{version}/mac/Opera_#{version}_Setup.dmg"
   name "Opera"
@@ -13,6 +13,7 @@ cask "opera" do
   end
 
   auto_updates true
+  depends_on macos: ">= :big_sur"
 
   app "Opera.app"
 
@@ -20,6 +21,8 @@ cask "opera" do
     "~/Library/Application Support/com.operasoftware.Opera",
     "~/Library/Caches/com.operasoftware.Installer.Opera",
     "~/Library/Caches/com.operasoftware.Opera",
+    "~/Library/Cookies/com.operasoftware.Opera.binarycookies",
+    "~/Library/HTTPStorages/com.operasoftware.Installer.Opera",
     "~/Library/Preferences/com.operasoftware.Opera.plist",
     "~/Library/Saved Application State/com.operasoftware.Opera.savedState",
   ]

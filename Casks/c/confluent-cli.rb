@@ -1,9 +1,9 @@
 cask "confluent-cli" do
   arch arm: "arm64", intel: "amd64"
 
-  version "3.53.0"
-  sha256 arm:   "7d762bd9f9dfc3d1c9c19cc68cd8544d0c77c3f1798b43ad74a104111e0d4a34",
-         intel: "b4cf779e67617fbfa9e89eb80e713d21eb68a74da18a7f987c2cff3cc71d405d"
+  version "4.17.0"
+  sha256 arm:   "c4e45de9d243e0be2e04905dfdc991ce7dd3704eac1de64b819c81a9fce546aa",
+         intel: "e7316f039a88ca9594581c2b22c6297c82ad625ed8006676c8832ac01459ef5c"
 
   url "https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/#{version}/confluent_#{version}_darwin_#{arch}.tar.gz",
       verified: "s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/"
@@ -13,7 +13,15 @@ cask "confluent-cli" do
 
   livecheck do
     url "https://s3-us-west-2.amazonaws.com/confluent.cloud?prefix=confluent-cli/archives/&delimiter=/"
-    regex(%r{<Prefix>confluent-cli/archives/(\d+(?:\.\d+)+)/</Prefix>}i)
+    regex(%r{confluent[._-]cli/archives/v?(\d+(?:\.\d+)+)/}i)
+    strategy :xml do |xml, regex|
+      xml.get_elements("//Prefix").map do |item|
+        match = item.text&.strip&.match(regex)
+        next if match.blank?
+
+        match[1]
+      end
+    end
   end
 
   binary "confluent/confluent"

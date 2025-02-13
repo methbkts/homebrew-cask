@@ -1,6 +1,6 @@
 cask "trainerroad" do
-  version "2024.8.0.311"
-  sha256 "255351b3d2656bd838c5b23fbaac3b1efeb2bb7faa16bcaae8542490cb4fbd53"
+  version "2025.5.2.364"
+  sha256 "c56524272ddc622b0c1d66780fa0a0430133da6244e337f52a5a6b9907413cca"
 
   url "https://trainrdtrcmn01un1softw01.blob.core.windows.net/installers/mac/v001/Production/TrainerRoad-#{version}.dmg",
       verified: "trainrdtrcmn01un1softw01.blob.core.windows.net/"
@@ -10,7 +10,15 @@ cask "trainerroad" do
 
   livecheck do
     url "https://trainrdtrcmn01un1softw01.blob.core.windows.net/installers/mac/v001/Production/latest-mac.yml"
-    regex(/url:\s*TrainerRoad[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
+    regex(/TrainerRoad[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
+    strategy :electron_builder do |yaml, regex|
+      yaml["files"]&.map do |item|
+        match = item["url"]&.match(regex)
+        next if match.blank?
+
+        match[1]
+      end
+    end
   end
 
   depends_on macos: ">= :el_capitan"
@@ -18,4 +26,8 @@ cask "trainerroad" do
   app "TrainerRoad.app"
 
   zap trash: "~/Library/Application Support/TrainerRoad"
+
+  caveats do
+    requires_rosetta
+  end
 end

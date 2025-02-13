@@ -1,9 +1,9 @@
 cask "trezor-suite" do
   arch arm: "arm64", intel: "x64"
 
-  version "24.2.4"
-  sha256 arm:   "78ad5c31db8034129a2664ab4012441906f7cabd2624247e57e90c48d518eff2",
-         intel: "7ccb75097496d72f736e1d73e46a1ff4621300868ce273f7acaac2faeb7e2988"
+  version "25.1.2"
+  sha256 arm:   "cc27da74ce624680caa3728233ace15ffa82d0711178f2671e295a5afef9b04d",
+         intel: "43c03437bf8ebb1d1babe4838622005b441c197c3a3fe2d8d439a24da884ec96"
 
   url "https://github.com/trezor/trezor-suite/releases/download/v#{version}/Trezor-Suite-#{version}-mac-#{arch}.dmg",
       verified: "github.com/trezor/trezor-suite/"
@@ -12,8 +12,8 @@ cask "trezor-suite" do
   homepage "https://suite.trezor.io/"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://data.trezor.io/suite/releases/desktop/latest/latest-mac.yml"
+    strategy :electron_builder
   end
 
   auto_updates true

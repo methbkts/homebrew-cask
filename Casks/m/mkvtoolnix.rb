@@ -16,8 +16,8 @@ cask "mkvtoolnix" do
     sha256 "bb6d0ba4e0052b2831de0ae29ef3d0d4c7b4d0933b258455c248c1a1c5f913a0"
   end
   on_catalina :or_newer do
-    version "82.0"
-    sha256 "f1c627c612b6dc7b3b0a386401de386409b6c46a93b36d04d9255c71ac50aad3"
+    version "90.0"
+    sha256 "92b5c2c1a1c374ca9d283cd393ad224d9ee614b3b9f3c269979b6ae291e25796"
   end
 
   url "https://mkvtoolnix.download/macos/MKVToolNix-#{version}.dmg"
@@ -47,4 +47,8 @@ cask "mkvtoolnix" do
     "~/Library/Preferences/bunkus.org/mkvtoolnix-gui",
     "~/Library/Saved Application State/download.mkvtoolnix.MKVToolNix.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

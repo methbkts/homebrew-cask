@@ -1,8 +1,8 @@
 cask "douyin" do
-  version "3.5.1,7044145585217083655,11634728"
-  sha256 "c7b3d8cc00b5fcce5eeb8f95ab3f8f19351b7e92456ab9dd354e047a018a0e6b"
+  version "5.4.0,7044145585217083655,12279727"
+  sha256 "3ac20d1bc56ddc7725377f5c8d3976c50d304248eb311913486d3055343b6607"
 
-  url "https://www.douyin.com/download/pc/obj/douyin-pc-client/#{version.csv.second}/releases/#{version.csv.third}/#{version.csv.first}/darwin-universal/douyin-v#{version.csv.first}-darwin-universal.dmg"
+  url "https://www.douyin.com/download/pc/obj/douyin-pc-web//douyin-pc-client/#{version.csv.second}/releases/#{version.csv.third}/#{version.csv.first}/darwin-universal/douyin-v#{version.csv.first}-darwin-universal.dmg"
   name "Douyin"
   name "抖音"
   desc "Social software for creating music short videos"

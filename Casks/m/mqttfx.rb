@@ -1,17 +1,18 @@
 cask "mqttfx" do
-  arch arm: "aarch64", intel: "amd64"
+  arch arm: "applesilicon", intel: "intel"
 
-  version "5.6.0"
-  sha256 arm:   "295bf52305a6ddd36b569e746dd8df5a43db27d819d13c4f5f05c8cf1aa49eea",
-         intel: "5740a166b77116f6f7a929f33eea8e111b44c93d6dc343884d87ea100a46ba26"
+  version "5.9.0"
+  sha256 arm:   "20dd1d1e27237199b0eb7fd1ab37b5e5706b673617466fa009b5c904c53eb20b",
+         intel: "8a5292cd6f82ac067e0d5608c659c19ceea4501384f9de762ec8d6899bf6736f"
 
-  url "https://download.softblade.de/mqttfx-#{version}-macos-#{arch}.dmg"
+  url "https://download.softblade.net/mqttfx-#{version}-macos-#{arch}.dmg",
+      verified: "download.softblade.net/"
   name "MQTT.fx"
   desc "IoT route testing tool"
-  homepage "https://softblade.de/en/welcome/"
+  homepage "https://www.softblade.de/"
 
   livecheck do
-    url "https://softblade.de/download/"
+    url "https://www.softblade.de/download/"
     regex(/href=.*?mqttfx[._-]v?(\d+(?:\.\d+)+)-macos/i)
   end
 

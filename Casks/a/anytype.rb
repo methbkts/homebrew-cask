@@ -1,9 +1,9 @@
 cask "anytype" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.38.0"
-  sha256 arm:   "1358fd6cd3215edc00567b9594b594537230dbb1830231877b8b36c4595a6f98",
-         intel: "f3f09d7723ce63392d876ac5f714bdabd275de5fe47af197adb0dd4851725e9f"
+  version "0.45.2"
+  sha256 arm:   "e22c4a95ea6d8fe42d6f97613e51a2e887a555f7cd46a0b2c3896b8b501ed75f",
+         intel: "e7e5e77a34aa056668dd0d0f9583121e67fb3ff02efe1c04e90f2d6ed3d82e71"
 
   url "https://anytype-release.fra1.cdn.digitaloceanspaces.com/Anytype-#{version}-mac-#{arch}.dmg",
       verified: "anytype-release.fra1.cdn.digitaloceanspaces.com/"
@@ -12,11 +12,16 @@ cask "anytype" do
   homepage "https://anytype.io/"
 
   livecheck do
-    url "https://anytype-release.fra1.cdn.digitaloceanspaces.com/latest-mac.yml"
+    url "https://anytype-release.fra1.cdn.digitaloceanspaces.com/latest-mac.yml?v=#{Time.new.to_i}"
     strategy :electron_builder
   end
 
   auto_updates true
+  conflicts_with cask: [
+    "anytype@alpha",
+    "anytype@beta",
+  ]
+  depends_on macos: ">= :catalina"
 
   app "Anytype.app"
 

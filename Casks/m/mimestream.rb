@@ -1,6 +1,6 @@
 cask "mimestream" do
-  version "1.3.0"
-  sha256 "2a9c7f6456063ea296ca64ea27fbe02a015cfa73c72ac2393bd540bfd598ba6a"
+  version "1.5.0"
+  sha256 "b0d548f1c922f41149321389ea21c393490ddde607661fc3a515c050e3c856de"
 
   url "https://download.mimestream.com/Mimestream_#{version}.dmg"
   name "Mimestream"
@@ -8,12 +8,12 @@ cask "mimestream" do
   homepage "https://mimestream.com/"
 
   livecheck do
-    url "https://mimestream.com/releases"
-    regex(/Version\sv?(\d+(?:\.\d+)+)/i)
+    url "https://mimestream.com/appcast.xml"
+    strategy :sparkle, &:short_version
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: ">= :monterey"
 
   app "Mimestream.app"
 

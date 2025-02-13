@@ -1,9 +1,9 @@
 cask "linear-linear" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.24.1,240304wsaf9zmfe"
-  sha256 arm:   "4c7bce4403e0f1aa4f2a9951d8baa6c2f2289d72d79c6a3c4a00cb1b7b01fb83",
-         intel: "9c12800f4030f657ff2ea816377d8cb0f4940ddc229268d5b673c8441bc73fe0"
+  version "1.28.0,250210czuc2fofw"
+  sha256 arm:   "69c25c386b0afcfb1c731b09486f66ec94e0b01d461ed77b1abcc95592d574d0",
+         intel: "77be8e2fd4e0878221d3d2d7d5932ee3333434f284b3c1576c1a9c4c3713737a"
 
   url "https://download.todesktop.com/200315glz2793v6/Linear%20#{version.csv.first}%20-%20Build%20#{version.csv.second}-#{arch}-mac.zip",
       verified: "download.todesktop.com/200315glz2793v6/"
@@ -13,7 +13,7 @@ cask "linear-linear" do
 
   livecheck do
     url "https://download.todesktop.com/200315glz2793v6/latest-mac.yml"
-    regex(/Linear\sv?(\d+(?:\.\d+)+)(?:\s-\sBuild\s([a-z\d]+?))?-#{arch}-mac\.zip/)
+    regex(/Linear\sv?(\d+(?:\.\d+)+)(?:\s-\sBuild\s([a-z\d]+?))?-#{arch}-mac\.zip/i)
     strategy :electron_builder do |yaml, regex|
       yaml["files"]&.map do |item|
         match = item["url"]&.match(regex)
@@ -25,7 +25,7 @@ cask "linear-linear" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :catalina"
 
   app "Linear.app"
 

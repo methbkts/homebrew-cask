@@ -1,6 +1,6 @@
 cask "qth" do
-  version "0.8.9"
-  sha256 "053375e23b9b21d3b12794f757ab7d2972eb05af55355aa3ff5a3363136efc4e"
+  version "0.8.14"
+  sha256 "52b41561eb2cfd80a59b3df69787a2b21d22e4fd855ce85b9a9df9f9aeaabe88"
 
   url "https://www.w8wjb.com/qth/QTH-#{version}.dmg"
   name "QTH"
@@ -12,7 +12,7 @@ cask "qth" do
     regex(%r{href=.*?/QTH[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :high_sierra"
 
   app "QTH.app"
 

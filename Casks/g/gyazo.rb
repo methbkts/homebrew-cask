@@ -1,6 +1,6 @@
 cask "gyazo" do
-  version "7.1.0"
-  sha256 "28792b87981bcd590ee88ab1b1126963505ee4924fd2b507a9dbaeadf0e97bc2"
+  version "9.7.2"
+  sha256 "3d159b7891e5deff0671f326d76847d0d3f4740d86d7b5dcc47cdd0f62cbb49a"
 
   url "https://files.gyazo.com/setup/Gyazo-#{version}.pkg"
   name "Nota Gyazo GIF"
@@ -12,15 +12,17 @@ cask "gyazo" do
     strategy :sparkle
   end
 
+  depends_on macos: ">= :big_sur"
+
   pkg "Gyazo-#{version}.pkg"
 
   uninstall launchctl: "com.gyazo.menu.helper",
             quit:      "com.gyazo.menu",
             pkgutil:   "com.gyazo.pkg",
             delete:    [
-              "#{appdir}/Gyazo Menu.app",
-              "#{appdir}/Gyazo Video.app",
-              "#{appdir}/Gyazo.app",
+              "/Applications/Gyazo Menu.app",
+              "/Applications/Gyazo Video.app",
+              "/Applications/Gyazo.app",
             ]
 
   zap trash: [
