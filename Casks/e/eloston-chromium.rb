@@ -1,15 +1,15 @@
 cask "eloston-chromium" do
-  arch arm: "arm64", intel: "x86-64"
+  arch arm: "arm64", intel: "x86_64"
 
-  version "122.0.6261.111-1.1"
-  sha256 arm:   "d82330e2527f15d035442a869b4df12c92ada6999bf2e41700e4d82676c21c76",
-         intel: "cb2c125ee9cd05bbd8fadc4b865a894517b5d86e687c6eb3dd3ee5665e4b8965"
+  version "133.0.6943.53-1.1"
+  sha256 arm:   "ed0c5f0648637832b5607d6b08b6d68881f94f06bbc28af729f8b2305e9df32b",
+         intel: "4aec791c08b57d5e311cf2c29a80b1b22006121182d85027ce71caf42a9eda52"
 
   url "https://github.com/ungoogled-software/ungoogled-chromium-macos/releases/download/#{version}/ungoogled-chromium_#{version}_#{arch}-macos.dmg",
       verified: "github.com/ungoogled-software/ungoogled-chromium-macos/"
   name "Ungoogled Chromium"
   desc "Google Chromium, sans integration with Google"
-  homepage "https://ungoogled-software.github.io/ungoogled-chromium-binaries/"
+  homepage "https://ungoogled-software.github.io/"
 
   livecheck do
     url :url
@@ -26,7 +26,7 @@ cask "eloston-chromium" do
     "chromium",
     "freesmug-chromium",
   ]
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :big_sur"
 
   app "Chromium.app"
 

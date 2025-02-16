@@ -1,6 +1,6 @@
 cask "sigmaos" do
-  version "1.14.0.11"
-  sha256 "d648b74ae8a971c7b69376328c0bd5bf47eec15c9cf3fcb185c257c3774bcf61"
+  version "1.19.0.4"
+  sha256 "70d308c4ed1a9830fff186c0c6edced1d5bab1369a1fca2bd4b7b93f58879d18"
 
   url "https://releases.sigmaos.com/SigmaOS-#{version}.dmg"
   name "SigmaOS"
@@ -13,7 +13,7 @@ cask "sigmaos" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: ">= :monterey"
 
   app "SigmaOS.app"
 

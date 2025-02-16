@@ -1,20 +1,26 @@
 cask "resolume-arena" do
-  version "7.19.0,32728"
-  sha256 "b277a813f82f339023f871af3432f6adfabede7af82235b641be45b3ec3b1311"
+  version "7.22.4,43686"
+  sha256 "7f5c0d40b554cf8a6788364e17bd0f08c8490027d3f605ecc088f05c41ecb683"
 
-  url "https://dd5sgwxv3xok.cloudfront.net/Resolume_Arena_#{version.major_minor_patch.dots_to_underscores}_rev_#{version.csv.second}_Installer.dmg",
+  url "https://dd5sgwxv3xok.cloudfront.net/Resolume_Arena_#{version.csv.first.dots_to_underscores}_rev_#{version.csv.second}_Installer.dmg",
       verified: "dd5sgwxv3xok.cloudfront.net/"
   name "Resolume Arena"
   desc "Video mapping software"
   homepage "https://resolume.com/"
 
   livecheck do
-    url "https://resolume.com/download/"
-    strategy :page_match do |page|
-      page.scan(/href=.*?Arena[._-]v?(\d+(?:[._-]\d+)+)[._-]rev[._-](\d+).+\.dmg/i)
-          .map { |match| "#{match[0].tr("_", ".")},#{match[1]}" }
+    url "https://resolume.com/update/arena_updates_mac.xml"
+    regex(/^v?(\d+(?:\.\d+)+)\s*rev\s*(\d+)$/i)
+    strategy :sparkle do |item, regex|
+      match = item.short_version&.match(regex)
+      next if match.blank?
+
+      "#{match[1]},#{match[2]}"
     end
   end
+
+  auto_updates true
+  depends_on macos: ">= :catalina"
 
   pkg "Resolume Arena Installer.pkg"
 

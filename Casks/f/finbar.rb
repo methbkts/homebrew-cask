@@ -1,20 +1,19 @@
 cask "finbar" do
-  version "1.12.3"
-  sha256 "558139eb1a6685a01f1edbde0ef0af263f118b5a9f97a23a218359ab4c9cb0c7"
+  version "1.15"
+  sha256 "4ca0a0997d26e381f9b9e9b8ab601d2f310cf514e8e9e619905efde0a741401d"
 
-  url "https://f002.backblazeb2.com/file/roeybiran/finbar/Finbar%20#{version}.dmg",
-      verified: "f002.backblazeb2.com/file/roeybiran/finbar/"
+  url "https://roeybiran.com/apps/finbar/Finbar%20#{version}.dmg"
   name "Finbar"
   desc "Menu bar searching utility"
-  homepage "https://www.roeybiran.com/apps/finbar"
+  homepage "https://roeybiran.com/apps/finbar/"
 
   livecheck do
-    url "https://www.roeybiran.com/apps/finbar/appcast.xml"
+    url "https://roeybiran.com/apps/finbar/appcast.xml"
     strategy :sparkle, &:short_version
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: ">= :ventura"
 
   app "Finbar.app"
 

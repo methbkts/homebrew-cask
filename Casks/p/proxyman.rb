@@ -1,18 +1,19 @@
 cask "proxyman" do
-  version "5.0.0,50000"
-  sha256 "a13d83e0e4333ed2eaac0fa848fca458e0ec6eeaf5f89e8dbd893eaf2dc7fbb0"
+  version "5.15.0,51500"
+  sha256 "a6e50f5ddcae52d71c633b98264ae2eb5fe5adbf8575b779d33d889eb3fc1382"
 
-  url "https://download.proxyman.io/#{version.csv.second}/Proxyman_#{version.csv.first}.dmg"
+  url "https://download.proxyman.com/#{version.csv.second}/Proxyman_#{version.csv.first}.dmg"
   name "Proxyman"
   desc "HTTP debugging proxy"
-  homepage "https://proxyman.io/"
+  homepage "https://proxyman.com/"
 
   livecheck do
-    url "https://proxyman.io/osx/version.xml"
+    url "https://proxyman.com/osx/version.xml"
     strategy :sparkle
   end
 
   auto_updates true
+  depends_on macos: ">= :big_sur"
 
   app "Proxyman.app"
   binary "#{appdir}/Proxyman.app/Contents/MacOS/proxyman-cli"
@@ -35,6 +36,7 @@ cask "proxyman" do
 
   zap trash: [
     "~/.proxyman*",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.proxyman.nsproxy.sfl*",
     "~/Library/Application Support/com.proxyman",
     "~/Library/Application Support/com.proxyman.NSProxy",
     "~/Library/Caches/com.plausiblelabs.crashreporter.data/com.proxyman.NSProxy",

@@ -31,7 +31,6 @@ cask "appcleaner" do
   homepage "https://freemacsoft.net/appcleaner/"
 
   auto_updates true
-  depends_on macos: ">= :mojave"
 
   app "AppCleaner.app"
 
@@ -40,6 +39,7 @@ cask "appcleaner" do
 
   zap trash: [
     "~/Library/Caches/net.freemacsoft.AppCleaner",
+    "~/Library/HTTPStorages/net.freemacsoft.AppCleaner",
     "~/Library/Preferences/net.freemacsoft.AppCleaner-SmartDelete.plist",
     "~/Library/Preferences/net.freemacsoft.AppCleaner.plist",
     "~/Library/Saved Application State/net.freemacsoft.AppCleaner.savedState",

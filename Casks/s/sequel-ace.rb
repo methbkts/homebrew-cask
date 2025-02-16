@@ -1,6 +1,6 @@
 cask "sequel-ace" do
-  version "4.0.13,20062"
-  sha256 "1ec331dd786b7fa89dfc5f57504559bcff6f079d9dd30f8bc73fa879d992ca1f"
+  version "4.2.1,20085"
+  sha256 "77a392ad4cd67d30db92466f3dd0cb02ed4e57a4008375d44bb05b69138423ae"
 
   url "https://github.com/Sequel-Ace/Sequel-Ace/releases/download/production/#{version.csv.first}-#{version.csv.second}/Sequel-Ace-#{version.csv.first}.zip"
   name "Sequel Ace"
@@ -16,6 +16,8 @@ cask "sequel-ace" do
       end
     end
   end
+
+  depends_on macos: ">= :high_sierra"
 
   app "Sequel Ace.app"
 

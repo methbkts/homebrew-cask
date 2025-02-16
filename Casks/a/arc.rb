@@ -1,6 +1,6 @@
 cask "arc" do
-  version "1.33.0,47142"
-  sha256 "37c0538a95f65f5387d62b31656fff10cdf77e4d8cc81509d012d57db8dcc971"
+  version "1.82.1,58845"
+  sha256 "f2e70e3a75376e3f8a86d0d82a9455a065242ee30db6380fcf740219417484fa"
 
   url "https://releases.arc.net/release/Arc-#{version.csv.first}-#{version.csv.second}.zip"
   name "Arc"
@@ -9,17 +9,11 @@ cask "arc" do
 
   livecheck do
     url "https://releases.arc.net/updates.xml"
-    regex(%r{/Arc[._-]v?(\d+(?:\.\d+)+)[._-](\d+).zip}i)
-    strategy :sparkle do |item, regex|
-      match = item.url.match(regex)
-      next if match.blank?
-
-      "#{match[1]},#{match[2]}"
-    end
+    strategy :sparkle
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: ">= :ventura"
 
   app "Arc.app"
 

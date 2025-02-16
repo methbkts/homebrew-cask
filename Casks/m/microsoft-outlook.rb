@@ -47,9 +47,17 @@ cask "microsoft-outlook" do
       skip "Legacy version"
     end
   end
-  on_monterey :or_newer do
-    version "16.82.24021116"
-    sha256 "2eee29f7f2ce309017ac42cecee20a0b699e984d175decad62e663352a7f12b3"
+  on_monterey do
+    version "16.89.24091630"
+    sha256 "24731ffca0b78c02f2544b145b4a103bd11b724fef0dc938bf5899e156495a72"
+
+    livecheck do
+      skip "Legacy version"
+    end
+  end
+  on_ventura :or_newer do
+    version "16.94.25020927"
+    sha256 "89dcdef105e5d92478fa28881b0d232c90e38f641674c5839ab8ba2a0f03ea58"
 
     livecheck do
       url "https://go.microsoft.com/fwlink/p/?linkid=525137"

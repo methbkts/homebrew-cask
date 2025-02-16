@@ -1,9 +1,9 @@
 cask "orcaslicer" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "1.9.1"
-  sha256 arm:   "28db87f6554aec0d4297ba4b7d12a3bf93bd90964e22245483d7239d1f967ecc",
-         intel: "0dc96b0b53ae9b7d09956fde812436302dcc01db7757b25ee6b552597911ed47"
+  version "2.2.0"
+  sha256 arm:   "8f041d83c71af3dbae10806ccde9472e12d479c6b08b5224b6b44bac5896247e",
+         intel: "db639a1c97907d639dfff2edc4d19a24bc38b96f8a4677cb94441736ce48b907"
 
   url "https://github.com/SoftFever/OrcaSlicer/releases/download/v#{version}/OrcaSlicer_Mac_#{arch}_V#{version}.dmg"
   name "Orca Slicer"

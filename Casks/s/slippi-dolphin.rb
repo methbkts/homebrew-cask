@@ -1,6 +1,6 @@
 cask "slippi-dolphin" do
-  version "3.4.0"
-  sha256 "bb5eb544055c47ebfee905e3ca7268f276757199fbd32420afc6968fca7ea114"
+  version "3.4.4"
+  sha256 "5d425e7d2ae5fa8ec0c3da7b8f7b7f6033474270f6c1060130915ffc8c5296b7"
 
   url "https://github.com/project-slippi/Ishiiruka/releases/download/v#{version}/FM-Slippi-#{version}-Mac.dmg",
       verified: "github.com/project-slippi/Ishiiruka/"
@@ -13,10 +13,16 @@ cask "slippi-dolphin" do
     strategy :github_latest
   end
 
+  depends_on macos: ">= :catalina"
+
   app "Slippi Dolphin.app"
 
   zap trash: [
     "~/Library/Application Support/Dolphin",
     "~/Library/Preferences/com.project-slippi.dolphin.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

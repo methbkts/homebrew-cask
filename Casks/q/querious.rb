@@ -1,6 +1,6 @@
 cask "querious" do
-  version "4.0.11"
-  sha256 "f6ace8c20ebbe691a98ab8ad07b0c0b976844713ccb1a1696c56838a970d5132"
+  version "4.1.3"
+  sha256 "6692d47838e6a5fd002345ea5966ac2649b086fdaaa14c5b2cb81b0580fd2194"
 
   url "https://www.araelium.com/querious/downloads/versions/Querious#{version}.zip"
   name "Querious #{version.major}"
@@ -9,7 +9,9 @@ cask "querious" do
 
   livecheck do
     url "https://arweb-assets.s3.amazonaws.com/downloads/querious/updates.json"
-    regex(/Queriousv?(\d+(?:\.\d+)+)\.zip/i)
+    strategy :json do |json|
+      json["release"]&.map { |release| release["version"] }
+    end
   end
 
   auto_updates true

@@ -1,6 +1,6 @@
 cask "mongodb-realm-studio" do
-  version "14.1.2"
-  sha256 "79aaf07e13437fd26665cff6d755021b6dda331259d6957d2ba4cc7633ffdfaa"
+  version "15.2.1"
+  sha256 "cdc7af2ccd8de7055f3a7fef59db8a0bc7154eed7ddb2a3a70dc60231b7b7a58"
 
   url "https://github.com/realm/realm-studio/releases/download/v#{version}/Realm.Studio-#{version}.dmg",
       verified: "github.com/realm/realm-studio/"
@@ -8,7 +8,13 @@ cask "mongodb-realm-studio" do
   desc "Tool for the Realm Database and Realm Platform"
   homepage "https://realm.io/products/realm-studio/"
 
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
   auto_updates true
+  depends_on macos: ">= :catalina"
 
   app "Realm Studio.app"
 
@@ -21,4 +27,8 @@ cask "mongodb-realm-studio" do
     "~/Library/Preferences/io.realm.realm-studio.plist",
     "~/Library/Saved Application State/io.realm.realm-studio.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

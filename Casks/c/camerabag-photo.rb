@@ -1,6 +1,6 @@
 cask "camerabag-photo" do
-  version "2024.0.0"
-  sha256 "aacc109fde5c97d19deb3ad4b6b33dc11a437af58a068503d35acc1e45bd6b7e"
+  version "2025.0.2"
+  sha256 "a7911687ad82b8214793ae33bc33ccd15c788862bfa0392865158deab1984d24"
 
   url "https://nevercenter.com/camerabag/download/filearchive/Install_CameraBag_Photo_#{version.dots_to_underscores}_mac.dmg"
   name "CameraBag"
@@ -15,7 +15,7 @@ cask "camerabag-photo" do
     end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :high_sierra"
 
   app "CameraBag Photo.app"
 

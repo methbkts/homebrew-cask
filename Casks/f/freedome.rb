@@ -1,5 +1,5 @@
 cask "freedome" do
-  version "2.69.55.0"
+  version "2.71.176.0"
   sha256 :no_check
 
   url "https://download.sp.f-secure.com/freedome/installer/2/Freedome.pkg"
@@ -7,10 +7,7 @@ cask "freedome" do
   desc "VPN client"
   homepage "https://www.f-secure.com/en_US/web/home_us/freedome"
 
-  livecheck do
-    url :url
-    strategy :extract_plist
-  end
+  deprecate! date: "2024-07-15", because: :discontinued
 
   pkg "Freedome.pkg"
 

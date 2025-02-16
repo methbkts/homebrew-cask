@@ -1,8 +1,8 @@
 cask "rawtherapee" do
-  version "5.10"
-  sha256 "36f061dc293f8141d20910dde62c976fa57c3dd3f8708a628b3aece9c9ca14cf"
+  version "5.11"
+  sha256 "a3e928cafc7a00a090dcf50b84cd45af48ce8f457269d601d301072df7e0f7af"
 
-  url "https://www.rawtherapee.com/shared/builds/mac/RawTherapee_macOS_13.3_Universal_#{version}.zip"
+  url "https://www.rawtherapee.com/shared/builds/mac/RawTherapee_macOS_12.3_Universal_#{version}.zip"
   name "RawTherapee"
   desc "RAW photo processor"
   homepage "https://rawtherapee.com/"
@@ -13,7 +13,7 @@ cask "rawtherapee" do
   end
 
   depends_on macos: ">= :big_sur"
-  container nested: "RawTherapee_macOS_13.3_Universal_#{version}_folder/RawTherapee_macOS_13.3_Universal_#{version}.dmg"
+  container nested: "RawTherapee_macOS_12.3_Universal_#{version}_folder/RawTherapee_macOS_12.3_Universal_#{version}.dmg"
 
   app "RawTherapee.app"
 

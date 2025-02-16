@@ -1,9 +1,9 @@
 cask "1password" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "8.10.27"
-  sha256 arm:   "e28aa9b11675d32dae876829e10c877d474a111f2ff27f268cd155c0a458929a",
-         intel: "f4bad227d3cb45715b03bc6405ba8521956d02ecbb52b0c187b7baae52eaaccd"
+  version "8.10.60"
+  sha256 arm:   "76b26233c12250cdcce78f8a3d074bbc09927c11f960fa90935e328c7ce806d3",
+         intel: "d8dbf808728b80215b5354de250848abc61d909490257b54c364b5ec1f1c4b8b"
 
   url "https://downloads.1password.com/mac/1Password-#{version}-#{arch}.zip"
   name "1Password"
@@ -17,8 +17,8 @@ cask "1password" do
 
   auto_updates true
   conflicts_with cask: [
-    "homebrew/cask-versions/1password-beta",
-    "homebrew/cask-versions/1password-nightly",
+    "1password@beta",
+    "1password@nightly",
   ]
   depends_on macos: ">= :catalina"
 

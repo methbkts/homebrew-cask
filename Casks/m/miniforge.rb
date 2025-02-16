@@ -1,9 +1,9 @@
 cask "miniforge" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "23.11.0-0"
-  sha256 arm:   "9382007611d4ad7201976a33cd65aaf2b3de582285b76c894d8c71eac544bfe1",
-         intel: "6e586a93cc8c6d21deb543d46740806795eae4ff16a76bc5f8a57673e3044c73"
+  version "24.11.3-0"
+  sha256 arm:   "dbead9822b1932ecc1b3238311a843400462b38e302bbd067ef373aa39dedd4f",
+         intel: "1f8e16f2f8e7538c2ef1d08cbb8f2feadc75907e31dbcde75a10ca788fc03abb"
 
   url "https://github.com/conda-forge/miniforge/releases/download/#{version}/Miniforge3-#{version}-MacOSX-#{arch}.sh"
   name "miniforge"
@@ -17,7 +17,10 @@ cask "miniforge" do
   end
 
   auto_updates true
-  conflicts_with cask: "miniconda"
+  conflicts_with cask: [
+    "mambaforge",
+    "miniconda",
+  ]
   container type: :naked
 
   installer script: {

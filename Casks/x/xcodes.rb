@@ -1,14 +1,14 @@
 cask "xcodes" do
-  version "2.0.2b23"
-  sha256 "9210881daab9cffa91d28ddee61ece3047980a19323bfd51a60defc7baf3ac37"
+  version "2.4.1b30"
+  sha256 "a4cc2059728c1ba4420b010b7092f0f752393fdba419cedfb8dd3f688ee5e81a"
 
-  url "https://github.com/RobotsAndPencils/XcodesApp/releases/download/v#{version}/Xcodes.zip"
+  url "https://github.com/XcodesOrg/XcodesApp/releases/download/v#{version}/Xcodes.zip"
   name "Xcodes"
   desc "Install and switch between multiple versions of Xcode"
-  homepage "https://github.com/RobotsAndPencils/XcodesApp"
+  homepage "https://github.com/XcodesOrg/XcodesApp"
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: ">= :ventura"
 
   app "Xcodes.app"
 

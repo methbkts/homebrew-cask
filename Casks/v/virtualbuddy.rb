@@ -1,28 +1,22 @@
 cask "virtualbuddy" do
-  version "1.3.2,107"
-  sha256 "793da34d91819bdbaded61f3b832d468b8cca91714132a9e89eb262e2d008412"
+  version "1.7,132"
+  sha256 "c669ab7ca417a0cb533b12c64e398d4e564dec67f24a8dd349e2ef5d7fe07b8d"
 
-  url "https://github.com/insidegui/VirtualBuddy/releases/download/#{version.csv.first}/VirtualBuddy_v#{version.csv.first}-#{version.csv.second}.dmg"
+  url "https://su.virtualbuddy.app/VirtualBuddy_v#{version.csv.first}-#{version.csv.second}.dmg",
+      verified: "su.virtualbuddy.app/"
   name "VirtualBuddy"
   desc "Virtualization tool"
   homepage "https://github.com/insidegui/VirtualBuddy"
 
   livecheck do
-    url :url
-    regex(/^VirtualBuddy[._-]v?(\d+(?:[.-]\d+)+)\.dmg$/i)
-    strategy :github_latest do |json, regex|
-      json["assets"]&.map do |asset|
-        match = asset["name"]&.match(regex)
-        next if match.blank?
-
-        match[1].tr("-", ",")
-      end
-    end
+    url "https://su.virtualbuddy.app/appcast.xml?channel=release"
+    strategy :sparkle
   end
 
-  conflicts_with cask: "homebrew/cask-versions/virtualbuddy-beta"
+  auto_updates true
+  conflicts_with cask: "virtualbuddy@beta"
   depends_on arch: :arm64
-  depends_on macos: ">= :monterey"
+  depends_on macos: ">= :ventura"
 
   app "VirtualBuddy.app"
 

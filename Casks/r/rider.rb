@@ -1,9 +1,9 @@
 cask "rider" do
   arch arm: "-aarch64"
 
-  version "2023.3.3,233.14015.60"
-  sha256 arm:   "2d6d425610a8d14616cf9a18a0048d678164fcc45f4f5a8ee3fff695012a0c43",
-         intel: "a90346a30523eaa2e3abf57abd3949f46e0c6e6d2ea0c62c36d40b07061626cb"
+  version "2024.3.5,243.24978.27"
+  sha256 arm:   "e0b1a2b44c9943b2fa00536ee9f311c5738d711dad60bba6b779dc75fb3d8113",
+         intel: "1ae18866cb007a1133aba937f1c46a98de7e3f881a23da3b6ad736a38e3500f7"
 
   url "https://download.jetbrains.com/rider/JetBrains.Rider-#{version.csv.first}#{arch}.dmg"
   name "JetBrains Rider"
@@ -13,8 +13,12 @@ cask "rider" do
   livecheck do
     url "https://data.services.jetbrains.com/products/releases?code=RD&latest=true&type=release"
     strategy :json do |json|
-      json["RD"].map do |release|
-        "#{release["version"]},#{release["build"]}"
+      json["RD"]&.map do |release|
+        version = release["version"]
+        build = release["build"]
+        next if version.blank? || build.blank?
+
+        "#{version},#{build}"
       end
     end
   end

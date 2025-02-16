@@ -1,9 +1,9 @@
 cask "intellij-idea" do
   arch arm: "-aarch64"
 
-  version "2023.3.4,233.14475.28"
-  sha256 arm:   "d41bc161616dd05bff9aa4b6f3ee704a7ec2c8f35c09c0c79b0778b36a4bab6b",
-         intel: "b8d9d618786f552cdb8a34efbe36c3fa8c9fb94eb37c8552580c5210ba36b52c"
+  version "2024.3.3,243.24978.46"
+  sha256 arm:   "d20b880918218b5dd75812a34817d4016f1109a23977f1de8aaf1fbad89ad06e",
+         intel: "c48b52537f23c3fe9647406beee4e2c7af2fcd39008d69beef0627b7d4b63c38"
 
   url "https://download.jetbrains.com/idea/ideaIU-#{version.csv.first}#{arch}.dmg"
   name "IntelliJ IDEA Ultimate"
@@ -13,13 +13,18 @@ cask "intellij-idea" do
   livecheck do
     url "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=release"
     strategy :json do |json|
-      json["IIU"].map do |release|
-        "#{release["version"]},#{release["build"]}"
+      json["IIU"]&.map do |release|
+        version = release["version"]
+        build = release["build"]
+        next if version.blank? || build.blank?
+
+        "#{version},#{build}"
       end
     end
   end
 
   auto_updates true
+  conflicts_with cask: "intellij-idea@eap"
   depends_on macos: ">= :high_sierra"
 
   app "IntelliJ IDEA.app"

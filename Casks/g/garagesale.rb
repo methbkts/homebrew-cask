@@ -1,6 +1,6 @@
 cask "garagesale" do
-  version "9.6"
-  sha256 "09bcebeac483d20cac564a122e5a75ec1a2f88271da0b66f4cbaa3107daf8e39"
+  version "9.9"
+  sha256 "a43cf666512f4ef5e553c1c3bbc537e822a8c136694148a3238e22c3e20df94b"
 
   url "https://downloads.iwascoding.com/downloads/GarageSale_#{version}.dmg"
   name "GarageSale"
@@ -8,8 +8,8 @@ cask "garagesale" do
   homepage "https://www.iwascoding.com/GarageSale/"
 
   livecheck do
-    url "https://www.iwascoding.com/GarageSale/Downloads.html#VersionHistory"
-    regex(%r{href=.*?/GarageSale[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
+    url "https://www.iwascoding.com/GarageSale/Downloads.html"
+    regex(/href=.*?GarageSale[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
   depends_on macos: ">= :sierra"
@@ -17,8 +17,8 @@ cask "garagesale" do
   app "GarageSale.app"
 
   zap trash: [
-    "~/Library/Application Scripts/com.iwascoding.garagesale8",
-    "~/Library/Caches/com.apple.helpd/Generated/com.iwascoding.garagesale8.help*8.4",
-    "~/Library/Containers/com.iwascoding.garagesale8",
+    "~/Library/Application Scripts/com.iwascoding.garagesale*",
+    "~/Library/Caches/com.apple.helpd/Generated/com.iwascoding.garagesale*",
+    "~/Library/Containers/com.iwascoding.garagesale*",
   ]
 end

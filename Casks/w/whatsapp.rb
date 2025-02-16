@@ -1,6 +1,6 @@
 cask "whatsapp" do
-  version "2.24.4.79"
-  sha256 "a4b66674eb02dcd67eff2b0c68966478cf40a7864deff99a1f76342eedffab80"
+  version "2.25.1.83"
+  sha256 "1844b54471bd62f8182760b03e3fe65751a5825bedf65441fd97fed24453124d"
 
   url "https://web.whatsapp.com/desktop/mac_native/release/?version=#{version}&extension=zip&configuration=Release&branch=relbranch"
   name "WhatsApp"
@@ -17,27 +17,19 @@ cask "whatsapp" do
 
   auto_updates true
   conflicts_with cask: [
-    "homebrew/cask-versions/whatsapp-beta",
-    "homebrew/cask-versions/whatsapp-legacy",
+    "whatsapp@beta",
+    "whatsapp@legacy",
   ]
   depends_on macos: ">= :big_sur"
 
   app "WhatsApp.app"
 
   zap trash: [
-    "~/Library/Application Scripts/net.whatsapp.WhatsApp",
-    "~/Library/Application Scripts/net.whatsapp.WhatsApp.Intents",
-    "~/Library/Application Scripts/net.whatsapp.WhatsApp.IntentsUI",
-    "~/Library/Application Scripts/net.whatsapp.WhatsApp.ServiceExtension",
+    "~/Library/Application Scripts/net.whatsapp.WhatsApp*",
     "~/Library/Caches/net.whatsapp.WhatsApp",
-    "~/Library/Containers/net.whatsapp.WhatsApp",
-    "~/Library/Containers/net.whatsapp.WhatsApp.Intents",
-    "~/Library/Containers/net.whatsapp.WhatsApp.ServiceExtension",
+    "~/Library/Containers/net.whatsapp.WhatsApp*",
     "~/Library/Group Containers/group.com.facebook.family",
-    "~/Library/Group Containers/group.net.whatsapp.family",
-    "~/Library/Group Containers/group.net.whatsapp.WhatsApp.private",
-    "~/Library/Group Containers/group.net.whatsapp.WhatsApp.shared",
-    "~/Library/Group Containers/group.net.whatsapp.WhatsAppSMB.shared",
+    "~/Library/Group Containers/group.net.whatsapp*",
     "~/Library/Saved Application State/net.whatsapp.WhatsApp.savedState",
   ]
 end

@@ -1,6 +1,6 @@
 cask "nudge" do
-  version "1.1.15.81559"
-  sha256 "e51f1e00aea378c9167883339abb6251a3f2f7384e7e5ebf062e6fbb882714e8"
+  version "2.0.12.81807"
+  sha256 "508b65fe484ba01fce0e12f42e4758a61ce47e0e1fcf5991611942464bb0a055"
 
   url "https://github.com/macadmins/nudge/releases/download/v#{version}/Nudge-#{version}.pkg"
   name "Nudge"
@@ -12,7 +12,7 @@ cask "nudge" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: ">= :monterey"
 
   pkg "Nudge-#{version}.pkg"
   # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)

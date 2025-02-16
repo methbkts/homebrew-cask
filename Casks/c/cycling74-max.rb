@@ -1,8 +1,8 @@
 cask "cycling74-max" do
-  version "8.6.1_240213"
-  sha256 "d855ed01404a0f80b68d204e49b405848998dceca0ba858b799988e27446fd12"
+  version "9.0.4,250123"
+  sha256 "27d587327db18ce3161cab450d37bf28ee487c1782d26a315aa234d0c0d6ca11"
 
-  url "https://downloads.cdn.cycling74.com/max8/Max#{version.no_dots}.dmg"
+  url "https://downloads.cdn.cycling74.com/max#{version.csv.first.major}/Max#{version.csv.first.no_dots}_#{version.csv.second}.dmg"
   name "Cycling ‘74 Max"
   name "Ableton Max for Live"
   desc "Flexible space to create your own interactive software"
@@ -16,15 +16,15 @@ cask "cycling74-max" do
       match = json["release_date"]&.match(regex)
       next if id.blank? || match.blank?
 
-      "#{id}_#{match[1]}#{match[2]}#{match[3]}"
+      "#{id},#{match[1]}#{match[2]}#{match[3]}"
     end
   end
 
   app "Max.app"
 
   zap trash: [
-    "/Users/Shared/Max #{version.major}",
-    "~/Documents/Max #{version.major}",
+    "/Users/Shared/Max #{version.csv.first.major}",
+    "~/Documents/Max #{version.csv.first.major}",
     "~/Library/Application Support/Cycling '74",
     "~/Library/Saved Application State/com.cycling74.Max.savedState",
   ]

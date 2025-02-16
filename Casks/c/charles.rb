@@ -1,6 +1,6 @@
 cask "charles" do
-  version "4.6.5"
-  sha256 "2864867ec2e9d9ce229aba45ac6117ec74accf4d42c4c2bafb5f5eae399d6ba0"
+  version "4.6.7"
+  sha256 "ba16148c7a6b3723488cc95968d96fba1de0807ad8e47467a2b5ac3ad13ff22b"
 
   url "https://www.charlesproxy.com/assets/release/#{version}/charles-proxy-#{version}.dmg"
   name "Charles"
@@ -36,4 +36,8 @@ cask "charles" do
     "~/Library/Preferences/com.xk72.Charles.plist",
     "~/Library/Saved Application State/com.xk72.Charles.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end
